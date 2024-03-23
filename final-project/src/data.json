@@ -13,6 +13,14 @@
       "email": "second@user.com",
       "password": "IamsecondUser123@",
       "photoURL": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
+    },
+    {
+      "id": "2e92",
+      "username": "asdf",
+      "email": "bla@bla.com",
+      "password": "Bla@5bla",
+      "passwordRepeat": "Bla@5bla",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
     }
   ],
   "questions": [
