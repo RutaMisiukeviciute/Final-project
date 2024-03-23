@@ -1,12 +1,15 @@
 import './App.css';
 import Header from './components/UI/Header';
 import Footer from './components/UI/Footer';
+import MainQuestions from './components/pages/MainQuestions';
 
 const App = () => {
   return (
     <>
       <Header />
-      <main></main>
+      <main>
+        <MainQuestions />
+      </main>
       <Footer />
     </>
   );
