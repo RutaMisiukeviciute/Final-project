@@ -11,7 +11,8 @@ const StyledSection = styled.section`
   align-items: center;
 
   > h1{
-    font-size: 2.5rem;
+    font-size: 3rem;
+    color: #1E1E1E;
   }
   > form{
     display: flex;
@@ -22,15 +23,54 @@ const StyledSection = styled.section`
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
+
+      >label{
+        color: #1E1E1E;
+        font-size: 22px;
+      }
+
+      > input{
+      border: none;
+        border-bottom: 1px solid  #1E1E1E;
+        height: 30px;
+        background-color: #EEEDEB;
+        font-size: 20px;
+        color: #1E1E1E;
+        
+        &::placeholder{
+          font-size: 20px;
+          color: #3c3633d6
+        }
+    }
+
+    > span{
+        grid-column: span 3;
+        color: #950000;
+        text-align: center;
+      }
       > div{
         display: flex;
         justify-content: space-evenly;
       }
     }
-    > input{
-      width: 50%;
+    /* span{
+      color: #8f0000;
+    } */
+    >input[type=submit]{
+      background-color: #3C3633;
+      color: #EEEDEB;
+      width: 150px;
+      height: 35px;
+      border-radius: 8px;
       align-self: center;
+      border: none;
+      font-size: 22px;
+
+      &:hover{
+        box-shadow: -1px -3px 10px 0 #1E1E1E inset;
+      }
     }
+  
   }
 `;
 
@@ -164,7 +204,7 @@ const Register = () => {
             <span>{formik.errors.passwordRepeat}</span>
           }
         </div>
-        <input type="submit" value="Register2" />
+        <input type="submit" value="Register" />
       </form>
     </StyledSection>
   );

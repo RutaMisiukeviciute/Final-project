@@ -49,7 +49,7 @@ background-color: #e0ccbe;
                 box-shadow: 1px 3px 10px 0 #3c3633;
 
                 &:hover{
-                  box-shadow: -1px -3px 10px 0 #f8c2a7;
+                  box-shadow: -1px -3px 10px 0 #1e1e1e inset;
                 }
 
     }

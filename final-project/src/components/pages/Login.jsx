@@ -63,6 +63,10 @@ const StyledSection = styled.section`
       align-self: center;
       border: none;
       font-size: 22px;
+
+      &:hover{
+        box-shadow: -1px -3px 10px 0 #1E1E1E inset;
+      }
     }
   }
 `;
