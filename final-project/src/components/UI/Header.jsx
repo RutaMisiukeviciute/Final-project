@@ -10,16 +10,45 @@ height: 133px;
 background-color: #e0ccbe;
 
 >img {
-  width: 160px;
+  height: 180px;
 }
 
 >div {
+
+  padding-right: 30px;
   >ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: flex;
   gap: 10px;
+  
+
+  >li {
+
+      width: 147px;
+      height: 50px;
+      border: 1px solid #3c3633;
+      border-radius: 9px;
+      background-color: #3c3633;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      box-shadow: 1px 3px 10px 0 #3c3633;
+
+      &:hover{
+        box-shadow: -1px -3px 10px 0 #f8c2a7;
+      }
+      
+    >a{
+      color: #eeedeb;
+      text-decoration: none;
+      font-size: 32px;
+      text-align: center;
+    }
+  }
 
 }
 }
