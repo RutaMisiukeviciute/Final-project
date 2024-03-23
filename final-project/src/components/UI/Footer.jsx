@@ -13,7 +13,7 @@ background-color: #747264;
   margin-left: 30px;
   
   >h3{
-    font-size: 30px;
+    font-size: 25px;
     color: #edccbe;
     margin: 10px 0;
   }
@@ -60,7 +60,7 @@ background-color: #747264;
   height: 175px;
   
   >h3{
-    font-size: 30px;
+    font-size: 25px;
     color: #edccbe;
     margin: 10px 0;
   }

@@ -11,27 +11,58 @@ const StyledSection = styled.section`
   align-items: center;
   padding-top: 70px;
 
+
   > h1{
     font-size: 3rem;
+    color: #1E1E1E;
   }
 
   > form{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 25px;
 
     > div {
       display: grid;
       grid-template-columns: 1fr 2fr;
+      gap: 10px;
 
       > p{
         grid-column: span 3;
-        color: red;
+        color: #950000;
         text-align: center;
       }
+
+      >label{
+        color: #1E1E1E;
+        font-size: 22px;
+      }
+
+      >input{
+        border: none;
+        border-bottom: 1px solid  #1E1E1E;
+        height: 30px;
+        background-color: #EEEDEB;
+        
+        &::placeholder{
+          font-size: 20px;
+          color: #3c3633d6
+        }
+    }
     }
     +p{
-      color: red;
+      color: #8f0000;
+    }
+
+    >input[type=submit]{
+      background-color: #3C3633;
+      color: #EEEDEB;
+      width: 100px;
+      height: 35px;
+      border-radius: 8px;
+      align-self: center;
+      border: none;
+      font-size: 22px;
     }
   }
 `;
@@ -61,10 +92,10 @@ const Login = () => {
     },
     validationSchema: Yup.object({
       username: Yup.string()
-        .required('This fields must be filled')
+        .required('This field must be filled')
         .trim(),
       password: Yup.string()
-        .required('This fields must be filled')
+        .required('This field must be filled')
         .trim()
     })
   });

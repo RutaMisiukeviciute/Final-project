@@ -29,7 +29,7 @@
       "userId": "0",
       "title": "My first question",
       "question": "I have a question, where can I put my question?",
-      "rating": 10,
+      "rating": -10,
       "edited": true
     },
     {

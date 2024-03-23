@@ -10,6 +10,7 @@ main {
   background-color: #EEEDEB;
 
   >section {
-    padding: 0 20px;
+    padding: 20px;
+
   }
 }
