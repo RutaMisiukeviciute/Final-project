@@ -21,11 +21,11 @@
       "userId": "0",
       "title": "My first question",
       "question": "I have a question, where can I put my question?",
-      "rating": 0,
-      "edited": false
+      "rating": 10,
+      "edited": true
     },
     {
-      "id": "2",
+      "id": "1",
       "userId": "0",
       "title": "My second question",
       "question": "I have a question, where can I put my other question?",
@@ -44,9 +44,17 @@
     },
     {
       "id": "1",
-      "questionId": "1",
+      "questionId": "0",
       "userId": "0",
       "answer": "thank I found it myself",
+      "rating": 0,
+      "edited": false
+    },
+    {
+      "id": "2",
+      "questionId": "0",
+      "userId": "0",
+      "answer": "bla bla bla",
       "rating": 0,
       "edited": false
     }
