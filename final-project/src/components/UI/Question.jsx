@@ -3,17 +3,52 @@ import styled from "styled-components";
 const StyledQuestion = styled.div`
   box-sizing: border-box;
   border: 2px solid black;
-  border-radius: 10px;
-  text-align: center;
-  background-color: #f0f8ff65;
+  border-radius: 13px 8px 13px 4px;
+  margin-bottom: 15px;
+  position: relative;
+  box-shadow: 1px 3px 5px 0 #747264;
+  background-color: white;
 
-  width: 90%;
+  &:hover{
 
-  margin: 15px 0;
+    box-shadow: -1px -2px 10px 0 #747264 inset;
 
-  >img{
-    width: 80%;
   }
+
+
+
+  h1{
+    text-align: left;
+    margin-left: 10px;
+  }
+
+  >div{
+    display: flex;
+    gap: 15px ;
+    font-size: 22px;
+    margin-left: 10px;
+
+    >.green{
+    color: green;
+  }
+    >.red{
+    color: #940000;
+  }
+    >.zero{
+    color: #1E1E1E;
+  }
+
+  }
+
+  >p{
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    margin: 0;
+  }
+
+  
 `;
 
 const Question = ({ data, countNum }) => {
@@ -21,8 +56,12 @@ const Question = ({ data, countNum }) => {
   return (
     <StyledQuestion>
       <h1>{data.title}</h1>
-      <p>{data.rating}</p>
-      <p>{countNum}</p>
+      <div>
+        <p className={data.rating > 0 ? "green" : data.rating < 0 ? "red" : "zero"}>
+          {data.rating} rating
+        </p>
+        <p >{countNum} answers</p>
+      </div>
       {data.edited && <p>Edited</p>}
     </StyledQuestion>
   );
