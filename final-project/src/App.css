@@ -5,9 +5,13 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #EEEDEB;
+}
+
 main {
   min-height: calc(100vh - 133px - 175px);
-  background-color: #EEEDEB;
+
 
   >section {
     padding: 20px;

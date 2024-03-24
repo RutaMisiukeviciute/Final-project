@@ -42,7 +42,7 @@ const StyledSection = styled.section`
 const MainQuestions = () => {
 
   const { loggedInUser } = useContext(UsersContext);
-  const { question, answersCount, questionAuthors } = useContext(QuestionContext);
+  const { questions, answersCount, questionAuthors } = useContext(QuestionContext);
   // console.log(questionAuthors);
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,7 +54,7 @@ const MainQuestions = () => {
       }
       <div>
         {
-          question.map(el => {
+          questions.map(el => {
             return <Question
               key={el.id}
               data={el}

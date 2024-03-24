@@ -12,9 +12,17 @@ align-items: center;
 height: 133px;
 background-color: #e0ccbe;
 
->img {
+
+  display: flex;
+  align-items: center;
+  
+
+  >a{
+    >img {
   height: 180px;
 }
+  }
+
 
 >.loggedIn {
 
@@ -80,6 +88,7 @@ background-color: #e0ccbe;
     }
     }
 }
+
 `;
 
 const Header = () => {
@@ -97,7 +106,10 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <img src={logo} alt="My page logo" />
+
+
+      <Link to='/'><img src={logo} alt="My page logo" /></Link>
+
       {
         loggedInUser ?
           <div className='loggedOut'>

@@ -4,13 +4,18 @@ const QuestionContext = createContext();
 
 const QuestionProvider = ({ children }) => {
 
-  const [question, setQuestion] = useState([]);
+  const [questions, setQuestion] = useState([]);
   const [answer, setAnswer] = useState([]);
   const [users, setUsers] = useState([]);
   const [answersCount, setAnswersCount] = useState({});
   const [questionAuthors, setQuestionAuthors] = useState({});
 
   useEffect(() => {
+
+    fetch(`http://localhost:8080/users`)
+      .then(res => res.json())
+      .then(users => setUsers(users));
+
     fetch(`http://localhost:8080/questions`)
       .then(res => res.json())
       .then(question => setQuestion(question));
@@ -19,14 +24,10 @@ const QuestionProvider = ({ children }) => {
       .then(res => res.json())
       .then(answer => setAnswer(answer));
 
-    fetch(`http://localhost:8080/users`)
-      .then(res => res.json())
-      .then(users => setUsers(users));
-
   }, []);
 
   const addNewQuestion = newQuestion => {
-    setQuestion([...question, newQuestion]);
+    setQuestion([...questions, newQuestion]);
     fetch(`http://localhost:8080/questions`, {
       method: "POST",
       headers: {
@@ -36,11 +37,30 @@ const QuestionProvider = ({ children }) => {
     });
   };
 
+  const editQuestion = editedQuestion => {
+    console.log(editedQuestion);
+
+    fetch(`http://localhost:8080/questions/${editedQuestion.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editQuestion)
+    });
+    setQuestion(questions.map(el => {
+      if (el.id === editedQuestion.id) {
+        return editedQuestion;
+      } else {
+        return el;
+      }
+    }));
+  };
+
   useEffect(() => {
     const getQuestionInfo = () => {
       const counts = {};
       const names = {};
-      question.forEach(el => {
+      questions.forEach(el => {
         const questionId = el.id;
 
         const questionAnswers = answer.filter(el1 => el1.questionId === questionId);
@@ -52,15 +72,16 @@ const QuestionProvider = ({ children }) => {
       setQuestionAuthors(names);
     }
     getQuestionInfo();
-  }, [question, answer, users]);
+  }, [questions, answer, users]);
 
   return (
     <QuestionContext.Provider
       value={{
-        question,
+        questions,
         answersCount,
         questionAuthors,
-        addNewQuestion
+        addNewQuestion,
+        editQuestion
       }}
     >
       {children}
