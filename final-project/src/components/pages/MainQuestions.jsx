@@ -1,11 +1,38 @@
 import Question from "../UI/Question";
 import QuestionContext from "../../contexts/QuestionContext";
-import { useContext } from "react";
 import styled from "styled-components";
+import UsersContext from "../../contexts/UsersContext";
+import { useContext } from 'react';
+import { Link } from "react-router-dom";
 
 const StyledSection = styled.section`
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+
+  >a{
+    width: 180px;
+    height: 40px;
+    border: 1px solid #3c3633;
+    border-radius: 9px;
+    background-color: #3c3633;
+    box-shadow: 1px 3px 10px 0 #3c3633;
+    color: #eeedeb;
+    font-size: 22px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    
+    
+
+    &:hover{
+      box-shadow: -1px -3px 10px 0 #1e1e1e inset;
+    }
+  }
   
   >div{
     width: 95%;
@@ -13,9 +40,14 @@ const StyledSection = styled.section`
 `;
 const MainQuestions = () => {
 
-  const { question, answersCount } = useContext(QuestionContext);
+  const { loggedInUser } = useContext(UsersContext);
+  const { question, answersCount, questionAuthors } = useContext(QuestionContext);
+  // console.log(questionAuthors);
   return (
     <StyledSection>
+      {loggedInUser &&
+        <Link to="/askNew">Ask new question</Link>
+      }
       <div >
         {
           question.map(el => {
@@ -23,6 +55,8 @@ const MainQuestions = () => {
               key={el.id}
               data={el}
               countNum={answersCount[el.id]}
+              questionAuthors={questionAuthors[el.id]}
+
             />
           })
         }

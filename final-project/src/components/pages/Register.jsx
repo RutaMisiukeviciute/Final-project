@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 import * as Yup from 'yup';
-import UsersContext from '../../contexts/UserContext';
+import UsersContext from '../../contexts/UsersContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -53,9 +53,9 @@ const StyledSection = styled.section`
         justify-content: space-evenly;
       }
     }
-    /* span{
+    +span{
       color: #8f0000;
-    } */
+    }
     >input[type=submit]{
       background-color: #3C3633;
       color: #EEEDEB;
@@ -93,7 +93,7 @@ const Register = () => {
         photoURL: values.photoURL ? values.photoURL : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png',
 
       }
-      console.log(newUser);
+      // console.log(newUser);
       addNewUser(newUser);
       formik.resetForm();
       setLoggedInUser(newUser);

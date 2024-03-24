@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logo from '../../media/logo.png'
-import UsersContext from '../../contexts/UserContext';
+import UsersContext from '../../contexts/UsersContext';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -76,7 +76,7 @@ background-color: #e0ccbe;
     font-size: 22px;
 
     &:hover{
-      box-shadow: -1px -3px 10px 0 #f8c2a7;
+      box-shadow: -1px -3px 10px 0 #1e1e1e inset;
     }
     }
 }
@@ -87,16 +87,12 @@ const Header = () => {
   const { loggedInUser, setLoggedInUser } = useContext(UsersContext);
   const navigate = useNavigate();
 
-  console.log(loggedInUser);
 
   useEffect(() => {
     // Check local storage for logged in user on component mount
     const loggedInUserhere = localStorage.getItem('loggedInUser');
-    if (loggedInUserhere) {
-      setLoggedInUser(JSON.parse(loggedInUserhere));
-      navigate('/');
-    }
-  }, [navigate, setLoggedInUser]);
+    loggedInUserhere && setLoggedInUser(JSON.parse(loggedInUserhere));
+  }, [setLoggedInUser]);
 
 
   return (

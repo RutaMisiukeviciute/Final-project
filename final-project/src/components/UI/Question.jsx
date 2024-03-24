@@ -40,7 +40,14 @@ const StyledQuestion = styled.div`
 
   }
 
-  >p{
+  >p:first-of-type{
+    font-size: 20px;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    margin: 0;
+  }
+  >p:last-of-type{
     font-size: 20px;
     position: absolute;
     top: 5px;
@@ -51,7 +58,8 @@ const StyledQuestion = styled.div`
   
 `;
 
-const Question = ({ data, countNum }) => {
+const Question = ({ data, countNum, questionAuthors }) => {
+  // console.log(questionAuthors);
 
   return (
     <StyledQuestion>
@@ -63,6 +71,8 @@ const Question = ({ data, countNum }) => {
         <p >{countNum} answers</p>
       </div>
       {data.edited && <p>Edited</p>}
+      <p>Asked by {questionAuthors}</p>
+
     </StyledQuestion>
   );
 }
