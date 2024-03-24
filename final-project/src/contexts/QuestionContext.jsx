@@ -38,14 +38,13 @@ const QuestionProvider = ({ children }) => {
   };
 
   const editQuestion = editedQuestion => {
-    console.log(editedQuestion);
 
     fetch(`http://localhost:8080/questions/${editedQuestion.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(editQuestion)
+      body: JSON.stringify(editedQuestion)
     });
     setQuestion(questions.map(el => {
       if (el.id === editedQuestion.id) {

@@ -66,7 +66,6 @@ const StyledQuestion = styled.div`
 `;
 
 const Question = ({ data, countNum, questionAuthors }) => {
-  // console.log(questionAuthors);
 
   return (
     <StyledQuestion>

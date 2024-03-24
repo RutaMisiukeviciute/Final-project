@@ -93,7 +93,6 @@ const Register = () => {
         photoURL: values.photoURL ? values.photoURL : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png',
 
       }
-      // console.log(newUser);
       addNewUser(newUser);
       formik.resetForm();
       setLoggedInUser(newUser);

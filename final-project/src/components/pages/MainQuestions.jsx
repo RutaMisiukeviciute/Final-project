@@ -43,7 +43,6 @@ const MainQuestions = () => {
 
   const { loggedInUser } = useContext(UsersContext);
   const { questions, answersCount, questionAuthors } = useContext(QuestionContext);
-  // console.log(questionAuthors);
   const navigate = useNavigate();
   const location = useLocation();
 

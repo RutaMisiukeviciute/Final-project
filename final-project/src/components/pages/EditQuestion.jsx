@@ -115,19 +115,18 @@ const EditQuestion = () => {
   const { id } = useParams();
   const selectedQuestion = questions.find(question => question.id === id);
 
-
-
-
   const formik = useFormik({
     initialValues: {
+      id: selectedQuestion.id,
+      userId: selectedQuestion.userId,
+      rating: selectedQuestion.rating,
       title: selectedQuestion.title,
       question: selectedQuestion.question
     },
     onSubmit: values => {
+      console.log(values);
       const editedQuestion = {
         edited: true,
-        title: formik.title,
-        question: formik.question,
         ...values
       }
       editQuestion(editedQuestion);

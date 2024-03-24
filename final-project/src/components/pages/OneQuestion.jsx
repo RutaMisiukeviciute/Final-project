@@ -73,8 +73,6 @@ const OneQuestion = ({ }) => {
   const { answersCount, questionAuthors } = useContext(QuestionContext);
   const { loggedInUser } = useContext(UsersContext);
 
-  console.log(id);
-
   useEffect(() => {
     fetch(`http://localhost:8080/questions/${id}`)
       .then(res => res.json())
