@@ -3,7 +3,8 @@ import QuestionContext from "../../contexts/QuestionContext";
 import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import { useContext } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const StyledSection = styled.section`
   display: flex;
@@ -11,7 +12,7 @@ const StyledSection = styled.section`
   flex-direction: column;
   
 
-  >a{
+  >.a{
     width: 180px;
     height: 40px;
     border: 1px solid #3c3633;
@@ -34,21 +35,24 @@ const StyledSection = styled.section`
     }
   }
   
-  >div{
-    width: 95%;
-  }
+ >div {
+  width:95%;
+ }
 `;
 const MainQuestions = () => {
 
   const { loggedInUser } = useContext(UsersContext);
   const { question, answersCount, questionAuthors } = useContext(QuestionContext);
   // console.log(questionAuthors);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <StyledSection>
       {loggedInUser &&
-        <Link to="/askNew">Ask new question</Link>
+        <Link to="/askNew" className="a">Ask new question</Link>
       }
-      <div >
+      <div>
         {
           question.map(el => {
             return <Question
@@ -56,6 +60,7 @@ const MainQuestions = () => {
               data={el}
               countNum={answersCount[el.id]}
               questionAuthors={questionAuthors[el.id]}
+              location={location}
 
             />
           })
