@@ -39,6 +39,17 @@ const QuestionProvider = ({ children }) => {
     });
   };
 
+  const addNewAnswer = newAswer => {
+    setAnswers([newAswer, ...answers]);
+    fetch(`http://localhost:8080/answers`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newAswer)
+    });
+  }
+
   const editQuestion = editedQuestion => {
 
     fetch(`http://localhost:8080/questions/${editedQuestion.id}`, {
@@ -114,7 +125,8 @@ const QuestionProvider = ({ children }) => {
         deleteQuestion,
         answers,
         answerAutors,
-        questionAnswers
+        questionAnswers,
+        addNewAnswer
       }}
     >
       {children}

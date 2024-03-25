@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledOneAswer = styled.section`
+const StyledOneAswer = styled.div`
  box-sizing: border-box;
   border: 2px solid black;
   border-radius: 13px 8px 13px 4px;
