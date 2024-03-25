@@ -2,7 +2,11 @@ import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import { useContext, useState } from "react";
 import ModalDialog from "../UI/ModalDialog";
+import ModalDialog2 from "./ModalDialog2";
 import QuestionContext from "../../contexts/QuestionContext";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import { v4 as uuid } from 'uuid';
 
 const StyledOneAswer = styled.div`
  box-sizing: border-box;
@@ -83,7 +87,34 @@ const StyledOneAswer = styled.div`
 const Answer = ({ data, answerAutors }) => {
   const { loggedInUser } = useContext(UsersContext);
   const [show, setShow] = useState(false);
-  const { deleteAnswer } = useContext(QuestionContext)
+  const [show2, setShow2] = useState(false);
+  const { deleteAnswer, editAnswer } = useContext(QuestionContext);
+
+
+  const formik = useFormik({
+    initialValues: {
+      answer: data.answer,
+      id: data.id,
+      questionId: data.questionId,
+      userId: data.userId,
+      rating: data.rating,
+    },
+    onSubmit: values => {
+      const editedAnswer = {
+        edited: true,
+        ...values
+      }
+      editAnswer(editedAnswer);
+      setShow2(false);
+    },
+    validationSchema: Yup.object({
+      answer: Yup.string()
+        .min(5, 'Question must be at least 5 symbols length')
+        .max(500, "Question can't be longer than 500 symbols")
+        .required('This field must be filled')
+        .trim()
+    })
+  });
 
 
 
@@ -100,7 +131,7 @@ const Answer = ({ data, answerAutors }) => {
       </p>
       {loggedInUser.id === data.userId &&
         <div className="editDelete">
-          <button ><i className="bi bi-pencil-square"></i></button>
+          <button onClick={() => setShow2(true)}><i className="bi bi-pencil-square"></i></button>
           <button onClick={() => setShow(true)}><i className="bi bi-trash3" ></i></button>
         </div>}
       <ModalDialog isOpen={show}>
@@ -111,6 +142,28 @@ const Answer = ({ data, answerAutors }) => {
           setShow(false);
         }}>No</button>
       </ModalDialog>
+
+      <ModalDialog2 isOpen={show2}>
+        <form onSubmit={formik.handleSubmit}>
+          <div>
+            <textarea
+              name="answer" id="answer"
+              value={formik.values.answer}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {
+              formik.touched.answer && formik.errors.answer &&
+              <p>{formik.errors.answer}</p>
+            }
+          </div>
+          <input type="submit" value="Save" />
+        </form>
+        <br />
+        <button onClick={() => {
+          setShow2(false);
+        }}>Close</button>
+      </ModalDialog2>
     </StyledOneAswer>
   );
 }

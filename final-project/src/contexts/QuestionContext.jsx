@@ -54,6 +54,24 @@ const QuestionProvider = ({ children }) => {
     setAnswers(answers.filter(answers => id !== answers.id));
   }
 
+  const editAnswer = editedAnswer => {
+
+    fetch(`http://localhost:8080/answers/${editedAnswer.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedAnswer)
+    });
+    setAnswers(answers.map(el => {
+      if (el.id === editedAnswer.id) {
+        return editedAnswer;
+      } else {
+        return el;
+      }
+    }));
+  };
+
   const editQuestion = editedQuestion => {
 
     fetch(`http://localhost:8080/questions/${editedQuestion.id}`, {
@@ -131,7 +149,8 @@ const QuestionProvider = ({ children }) => {
         answerAutors,
         questionAnswers,
         addNewAnswer,
-        deleteAnswer
+        deleteAnswer,
+        editAnswer
       }}
     >
       {children}
