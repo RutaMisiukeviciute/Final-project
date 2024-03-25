@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledQuestion = styled.div`
-  box-sizing: border-box;
+ box-sizing: border-box;
   border: 2px solid black;
   border-radius: 13px 8px 13px 4px;
   margin-bottom: 15px;
   position: relative;
   box-shadow: 1px 3px 5px 0 #747264;
   background-color: white;
+  color: #1e1e1e;
 
   &:hover{
 
@@ -16,8 +18,12 @@ const StyledQuestion = styled.div`
   }
 
 
+  >a{
 
-  h1{
+   text-decoration: none;
+   color: #1E1E1E;
+
+    h1{
     text-align: left;
     margin-left: 10px;
   }
@@ -40,7 +46,14 @@ const StyledQuestion = styled.div`
 
   }
 
-  >p{
+  >p:first-of-type{
+    font-size: 20px;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    margin: 0;
+  }
+  >p:last-of-type{
     font-size: 20px;
     position: absolute;
     top: 5px;
@@ -48,21 +61,27 @@ const StyledQuestion = styled.div`
     margin: 0;
   }
 
+  }
   
 `;
 
-const Question = ({ data, countNum }) => {
+const Question = ({ data, countNum, questionAuthors }) => {
+
 
   return (
     <StyledQuestion>
-      <h1>{data.title}</h1>
-      <div>
-        <p className={data.rating > 0 ? "green" : data.rating < 0 ? "red" : "zero"}>
-          {data.rating} rating
-        </p>
-        <p >{countNum} answers</p>
-      </div>
-      {data.edited && <p>Edited</p>}
+      <Link to={`/${data.id}`}>
+        <h1>{data.title}</h1>
+        <div>
+          <p className={data.rating > 0 ? "green" : data.rating < 0 ? "red" : "zero"}>
+            {data.rating} rating
+          </p>
+          <p >{countNum} answers</p>
+        </div>
+        {data.edited && <p>Edited</p>}
+        <p>Asked by {questionAuthors}</p>
+      </Link>
+
     </StyledQuestion>
   );
 }

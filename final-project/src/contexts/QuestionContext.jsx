@@ -4,39 +4,97 @@ const QuestionContext = createContext();
 
 const QuestionProvider = ({ children }) => {
 
-  const [question, setQuestion] = useState([]);
-  const [answer, setAnswer] = useState([]);
+  const [questions, setQuestion] = useState([]);
+  const [answers, setAnswers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [answersCount, setAnswersCount] = useState({});
+  const [questionAuthors, setQuestionAuthors] = useState({});
 
   useEffect(() => {
+
+    fetch(`http://localhost:8080/users`)
+      .then(res => res.json())
+      .then(users => setUsers(users));
+
     fetch(`http://localhost:8080/questions`)
       .then(res => res.json())
       .then(question => setQuestion(question));
 
     fetch(`http://localhost:8080/answers`)
       .then(res => res.json())
-      .then(answer => setAnswer(answer));
+      .then(answers => setAnswers(answers));
 
   }, []);
 
+  const addNewQuestion = newQuestion => {
+    setQuestion([...questions, newQuestion]);
+    fetch(`http://localhost:8080/questions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newQuestion)
+    });
+  };
+
+  const editQuestion = editedQuestion => {
+
+    fetch(`http://localhost:8080/questions/${editedQuestion.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedQuestion)
+    });
+    setQuestion(questions.map(el => {
+      if (el.id === editedQuestion.id) {
+        return editedQuestion;
+      } else {
+        return el;
+      }
+    }));
+  };
+
+  const deleteQuestion = id => {
+
+    answers.forEach(answer => {
+      answer.questionId === id && fetch(`http://localhost:8080/answers/${answer.id}`, { method: "DELETE" });
+    });
+
+    fetch(`http://localhost:8080/questions/${id}`, { method: "DELETE" });
+    setQuestion(questions.filter(question => id !== question.id));
+
+  };
+
+
+
   useEffect(() => {
-    const countAnswers = () => {
+    const getQuestionInfo = () => {
       const counts = {};
-      question.forEach(el => {
+      const names = {};
+      questions.forEach(el => {
         const questionId = el.id;
-        const questionAnswers = answer.filter(el1 => el1.questionId === questionId);
+
+        const questionAnswers = answers.filter(el1 => el1.questionId === questionId);
         counts[questionId] = questionAnswers.length;
+
+        names[questionId] = users.find(user => user.id === el.userId).username;
       });
       setAnswersCount(counts)
+      setQuestionAuthors(names);
     }
-    countAnswers();
-  }, [question, answer]);
+    getQuestionInfo();
+  }, [questions, answers, users]);
 
   return (
     <QuestionContext.Provider
       value={{
-        question,
-        answersCount
+        questions,
+        answersCount,
+        questionAuthors,
+        addNewQuestion,
+        editQuestion,
+        deleteQuestion
       }}
     >
       {children}

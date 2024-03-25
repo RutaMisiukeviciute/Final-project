@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import UserContext from "../../contexts/UserContext";
+import UsersContext from "../../contexts/UsersContext";
 import { useFormik } from 'formik';
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
@@ -75,7 +75,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [wrongCredentials, setWrongCredentials] = useState(false);
-  const { users, setLoggedInUser } = useContext(UserContext);
+  const { users, setLoggedInUser } = useContext(UsersContext);
 
   const formik = useFormik({
     initialValues: {
