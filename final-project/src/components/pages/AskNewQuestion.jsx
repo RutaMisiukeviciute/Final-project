@@ -121,7 +121,6 @@ const AskNewQuestion = () => {
       question: ""
     },
     onSubmit: values => {
-      console.log(values);
       const newQuestion = {
         id: uuid(),
         userId: loggedInUser.id,

@@ -72,12 +72,36 @@
       "userId": "0",
       "answer": "thank I found it myself",
       "rating": 0,
-      "edited": false
+      "edited": true
     },
     {
       "id": "2",
       "questionId": "0",
       "userId": "0",
+      "answer": "bla bla bla",
+      "rating": 0,
+      "edited": false
+    },
+    {
+      "id": "3",
+      "questionId": "1",
+      "userId": "2e92",
+      "answer": "right here",
+      "rating": 0,
+      "edited": false
+    },
+    {
+      "id": "4",
+      "questionId": "1",
+      "userId": "0",
+      "answer": "thank I found it myself",
+      "rating": 0,
+      "edited": true
+    },
+    {
+      "id": "5",
+      "questionId": "b73105db-83bc-47f6-8be5-a39167a827bc",
+      "userId": "1",
       "answer": "bla bla bla",
       "rating": 0,
       "edited": false

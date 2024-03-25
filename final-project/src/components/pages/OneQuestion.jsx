@@ -5,6 +5,7 @@ import QuestionContext from "../../contexts/QuestionContext";
 import UsersContext from "../../contexts/UsersContext";
 import { Link, useNavigate } from "react-router-dom";
 import ModalDialog from "../UI/ModalDialog";
+import Answer from "../UI/Answer";
 
 const StyledOneQuestion = styled.section`
  box-sizing: border-box;
@@ -67,14 +68,19 @@ const StyledOneQuestion = styled.section`
   }
 `;
 
+const StyledAnswer = styled.section`
+
+`;
+
 const OneQuestion = ({ }) => {
 
   const { id } = useParams();
   const [question, setQuestion] = useState({});
-  const { answersCount, questionAuthors, deleteQuestion } = useContext(QuestionContext);
+  const { answersCount, questionAuthors, deleteQuestion, questionAnswers, answerAutors } = useContext(QuestionContext);
   const { loggedInUser } = useContext(UsersContext);
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+
 
   useEffect(() => {
     fetch(`http://localhost:8080/questions/${id}`)
@@ -82,7 +88,7 @@ const OneQuestion = ({ }) => {
       .then(data => setQuestion(data))
   }, []);
 
-  return (
+  return (<>
     <StyledOneQuestion>
       <div>
         <h1>{question.title}</h1>
@@ -113,7 +119,26 @@ const OneQuestion = ({ }) => {
         }}>No</button>
       </ModalDialog>
     </StyledOneQuestion>
-  );
+
+    <StyledAnswer>
+      <div>
+        {
+          questionAnswers[id].map(el => {
+            return <Answer
+              key={el.id}
+              data={el}
+              answerAutors={answerAutors[el.id]}
+            // location={location}
+
+            />
+          })
+        }
+      </div>
+
+    </StyledAnswer>
+
+  </>
+  )
 }
 
 export default OneQuestion;
