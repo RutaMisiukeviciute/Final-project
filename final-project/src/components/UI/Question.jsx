@@ -67,6 +67,7 @@ const StyledQuestion = styled.div`
 
 const Question = ({ data, countNum, questionAuthors }) => {
 
+
   return (
     <StyledQuestion>
       <Link to={`/${data.id}`}>

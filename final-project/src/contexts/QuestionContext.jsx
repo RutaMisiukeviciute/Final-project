@@ -5,7 +5,7 @@ const QuestionContext = createContext();
 const QuestionProvider = ({ children }) => {
 
   const [questions, setQuestion] = useState([]);
-  const [answer, setAnswer] = useState([]);
+  const [answers, setAnswers] = useState([]);
   const [users, setUsers] = useState([]);
   const [answersCount, setAnswersCount] = useState({});
   const [questionAuthors, setQuestionAuthors] = useState({});
@@ -22,7 +22,7 @@ const QuestionProvider = ({ children }) => {
 
     fetch(`http://localhost:8080/answers`)
       .then(res => res.json())
-      .then(answer => setAnswer(answer));
+      .then(answers => setAnswers(answers));
 
   }, []);
 
@@ -55,6 +55,19 @@ const QuestionProvider = ({ children }) => {
     }));
   };
 
+  const deleteQuestion = id => {
+
+    answers.forEach(answer => {
+      answer.questionId === id && fetch(`http://localhost:8080/answers/${answer.id}`, { method: "DELETE" });
+    });
+
+    fetch(`http://localhost:8080/questions/${id}`, { method: "DELETE" });
+    setQuestion(questions.filter(question => id !== question.id));
+
+  };
+
+
+
   useEffect(() => {
     const getQuestionInfo = () => {
       const counts = {};
@@ -62,7 +75,7 @@ const QuestionProvider = ({ children }) => {
       questions.forEach(el => {
         const questionId = el.id;
 
-        const questionAnswers = answer.filter(el1 => el1.questionId === questionId);
+        const questionAnswers = answers.filter(el1 => el1.questionId === questionId);
         counts[questionId] = questionAnswers.length;
 
         names[questionId] = users.find(user => user.id === el.userId).username;
@@ -71,7 +84,7 @@ const QuestionProvider = ({ children }) => {
       setQuestionAuthors(names);
     }
     getQuestionInfo();
-  }, [questions, answer, users]);
+  }, [questions, answers, users]);
 
   return (
     <QuestionContext.Provider
@@ -80,7 +93,8 @@ const QuestionProvider = ({ children }) => {
         answersCount,
         questionAuthors,
         addNewQuestion,
-        editQuestion
+        editQuestion,
+        deleteQuestion
       }}
     >
       {children}

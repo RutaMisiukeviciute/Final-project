@@ -3,7 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import QuestionContext from "../../contexts/QuestionContext";
 import UsersContext from "../../contexts/UsersContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ModalDialog from "../UI/ModalDialog";
 
 const StyledOneQuestion = styled.section`
  box-sizing: border-box;
@@ -70,8 +71,10 @@ const OneQuestion = ({ }) => {
 
   const { id } = useParams();
   const [question, setQuestion] = useState({});
-  const { answersCount, questionAuthors } = useContext(QuestionContext);
+  const { answersCount, questionAuthors, deleteQuestion } = useContext(QuestionContext);
   const { loggedInUser } = useContext(UsersContext);
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:8080/questions/${id}`)
@@ -95,10 +98,20 @@ const OneQuestion = ({ }) => {
         {loggedInUser.id === question.userId &&
           <div className="editDelete">
             <Link to={`edit`}><i className="bi bi-pencil-square"></i></Link>
-            <i className="bi bi-trash3"></i>
+            <button onClick={() => setShow(true)} >
+              <i className="bi bi-trash3" ></i>
+            </button>
           </div>
         }
       </div>
+      <ModalDialog isOpen={show}>
+        Are you sure you want delete this?
+        <br />
+        <button onClick={() => { deleteQuestion(id); setShow(false); navigate('/') }}>Yes</button>
+        <button onClick={() => {
+          setShow(false);
+        }}>No</button>
+      </ModalDialog>
     </StyledOneQuestion>
   );
 }
