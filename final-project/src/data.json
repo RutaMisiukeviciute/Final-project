@@ -83,14 +83,6 @@
       "edited": false
     },
     {
-      "id": "3",
-      "questionId": "1",
-      "userId": "2e92",
-      "answer": "right here",
-      "rating": 0,
-      "edited": false
-    },
-    {
       "id": "4",
       "questionId": "1",
       "userId": "0",
@@ -103,7 +95,7 @@
       "questionId": "b73105db-83bc-47f6-8be5-a39167a827bc",
       "userId": "1",
       "answer": "bla bla bla",
-      "rating": 0,
+      "rating": -3,
       "edited": false
     },
     {
@@ -118,9 +110,17 @@
       "id": "fbe7f777-5df0-4241-861d-eb4f31d379d0",
       "questionId": "1",
       "userId": "0",
-      "rating": 0,
+      "rating": 5,
       "edited": false,
       "answer": "blabla"
+    },
+    {
+      "id": "711a2688-40c6-45e8-964b-7dfabb78963b",
+      "questionId": "b73105db-83bc-47f6-8be5-a39167a827bc",
+      "userId": "0",
+      "rating": 0,
+      "edited": false,
+      "answer": "yupfgd"
     }
   ]
 }

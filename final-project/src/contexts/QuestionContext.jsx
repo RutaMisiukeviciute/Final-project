@@ -49,6 +49,10 @@ const QuestionProvider = ({ children }) => {
       body: JSON.stringify(newAswer)
     });
   }
+  const deleteAnswer = id => {
+    fetch(`http://localhost:8080/answers/${id}`, { method: "DELETE" });
+    setAnswers(answers.filter(answers => id !== answers.id));
+  }
 
   const editQuestion = editedQuestion => {
 
@@ -126,7 +130,8 @@ const QuestionProvider = ({ children }) => {
         answers,
         answerAutors,
         questionAnswers,
-        addNewAnswer
+        addNewAnswer,
+        deleteAnswer
       }}
     >
       {children}

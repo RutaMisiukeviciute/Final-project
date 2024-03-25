@@ -70,6 +70,10 @@ background-color: #e0ccbe;
   align-items: center;
   gap: 10px;
 
+  >img{
+    width: 80px;
+  }
+
   >p{
     font-size: 22px;
   }
@@ -113,9 +117,11 @@ const Header = () => {
       {
         loggedInUser ?
           <div className='loggedOut'>
+            <img src={loggedInUser.photoURL} alt="avatar" />
             <p>
               {loggedInUser.username}
             </p>
+
             <button
               onClick={() => {
                 setLoggedInUser(false);

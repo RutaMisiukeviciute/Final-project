@@ -37,7 +37,7 @@ const StyledOneQuestion = styled.section`
     margin-left: 10px;
 
     >.green{
-    color: green;
+    color: #0b550b;
   }
     >.red{
     color: #940000;
@@ -76,7 +76,8 @@ const StyledAnswer = styled.section`
 >div{
   >form {
     display: flex;
-    justify-content: end;
+    align-items: end;
+    flex-direction: column;
     padding-right: 5%;
     textarea{
       width: 80%;
@@ -103,7 +104,7 @@ const StyledAnswer = styled.section`
       width: 150px;
       height: 35px;
       border-radius: 8px;
-      align-self: center;
+      align-self: end;
       border: none;
       font-size: 22px;
       cursor: pointer;
@@ -117,7 +118,7 @@ const StyledAnswer = styled.section`
 
 `;
 
-const OneQuestion = ({ }) => {
+const OneQuestion = () => {
 
   const { id } = useParams();
   const [question, setQuestion] = useState({});
@@ -131,7 +132,7 @@ const OneQuestion = ({ }) => {
     fetch(`http://localhost:8080/questions/${id}`)
       .then(res => res.json())
       .then(data => setQuestion(data))
-  }, []);
+  }, [id]);
 
   const formik = useFormik({
     initialValues: {
@@ -205,6 +206,7 @@ const OneQuestion = ({ }) => {
             <p>{formik.errors.answer}</p>
           }
           <input type="submit" value="Add answer" />
+
         </form>}
         {
           questionAnswers[id]?.map(el => {
@@ -217,6 +219,7 @@ const OneQuestion = ({ }) => {
             />
           })
         }
+
       </div>
 
     </StyledAnswer>

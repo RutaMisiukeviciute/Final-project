@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import UsersContext from "../../contexts/UsersContext";
+import { useContext, useState } from "react";
+import ModalDialog from "../UI/ModalDialog";
+import QuestionContext from "../../contexts/QuestionContext";
 
 const StyledOneAswer = styled.div`
  box-sizing: border-box;
@@ -27,15 +31,7 @@ const StyledOneAswer = styled.div`
     font-size: 22px;
     margin-left: 10px;
 
-    >.green{
-    color: green;
-  }
-    >.red{
-    color: #940000;
-  }
-    >.zero{
-    color: #1E1E1E;
-  }
+    
 
   }
 
@@ -60,9 +56,36 @@ const StyledOneAswer = styled.div`
     right: 10px;
   }
   }
+  >.green{
+    color: #0b550b;
+  }
+    >.red{
+    color: #940000;
+  }
+    >.zero{
+    color: #1E1E1E;
+  }
+
+  >.editDelete{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 22px;
+
+    >button{
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
 `;
 
 const Answer = ({ data, answerAutors }) => {
+  const { loggedInUser } = useContext(UsersContext);
+  const [show, setShow] = useState(false);
+  const { deleteAnswer } = useContext(QuestionContext)
+
+
 
   return (
     <StyledOneAswer>
@@ -75,6 +98,19 @@ const Answer = ({ data, answerAutors }) => {
       <p className={data.rating > 0 ? "green" : data.rating < 0 ? "red" : "zero"}>
         {data.rating} rating
       </p>
+      {loggedInUser.id === data.userId &&
+        <div className="editDelete">
+          <button ><i className="bi bi-pencil-square"></i></button>
+          <button onClick={() => setShow(true)}><i className="bi bi-trash3" ></i></button>
+        </div>}
+      <ModalDialog isOpen={show}>
+        Are you sure you want delete this?
+        <br />
+        <button onClick={() => { deleteAnswer(data.id); setShow(false) }}>Yes</button>
+        <button onClick={() => {
+          setShow(false);
+        }}>No</button>
+      </ModalDialog>
     </StyledOneAswer>
   );
 }
