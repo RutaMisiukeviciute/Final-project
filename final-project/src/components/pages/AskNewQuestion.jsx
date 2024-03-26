@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { useNavigate, Link } from "react-router-dom";
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid';
 import styled from "styled-components";
 
 
@@ -121,7 +121,6 @@ const AskNewQuestion = () => {
       question: ""
     },
     onSubmit: values => {
-      console.log(values);
       const newQuestion = {
         id: uuid(),
         userId: loggedInUser.id,

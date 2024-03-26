@@ -9,6 +9,8 @@ const QuestionProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [answersCount, setAnswersCount] = useState({});
   const [questionAuthors, setQuestionAuthors] = useState({});
+  const [answerAutors, setAnswerAuthors] = useState({});
+  const [questionAnswers, setQuestionAnswers] = useState({});
 
   useEffect(() => {
 
@@ -35,6 +37,39 @@ const QuestionProvider = ({ children }) => {
       },
       body: JSON.stringify(newQuestion)
     });
+  };
+
+  const addNewAnswer = newAswer => {
+    setAnswers([newAswer, ...answers]);
+    fetch(`http://localhost:8080/answers`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newAswer)
+    });
+  }
+  const deleteAnswer = id => {
+    fetch(`http://localhost:8080/answers/${id}`, { method: "DELETE" });
+    setAnswers(answers.filter(answers => id !== answers.id));
+  }
+
+  const editAnswer = editedAnswer => {
+
+    fetch(`http://localhost:8080/answers/${editedAnswer.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedAnswer)
+    });
+    setAnswers(answers.map(el => {
+      if (el.id === editedAnswer.id) {
+        return editedAnswer;
+      } else {
+        return el;
+      }
+    }));
   };
 
   const editQuestion = editedQuestion => {
@@ -72,6 +107,7 @@ const QuestionProvider = ({ children }) => {
     const getQuestionInfo = () => {
       const counts = {};
       const names = {};
+      const qAnswers = {};
       questions.forEach(el => {
         const questionId = el.id;
 
@@ -79,12 +115,26 @@ const QuestionProvider = ({ children }) => {
         counts[questionId] = questionAnswers.length;
 
         names[questionId] = users.find(user => user.id === el.userId).username;
+        qAnswers[questionId] = questionAnswers;
       });
       setAnswersCount(counts)
       setQuestionAuthors(names);
+      setQuestionAnswers(qAnswers);
     }
     getQuestionInfo();
   }, [questions, answers, users]);
+
+  useEffect(() => {
+
+    const getAnswersInfo = () => {
+      const names = {};
+      answers.forEach(answer => {
+        names[answer.id] = users.find(user => user.id === answer.userId).username;
+      });
+      setAnswerAuthors(names);
+    }
+    getAnswersInfo();
+  }, [answers, users]);
 
   return (
     <QuestionContext.Provider
@@ -94,7 +144,13 @@ const QuestionProvider = ({ children }) => {
         questionAuthors,
         addNewQuestion,
         editQuestion,
-        deleteQuestion
+        deleteQuestion,
+        answers,
+        answerAutors,
+        questionAnswers,
+        addNewAnswer,
+        deleteAnswer,
+        editAnswer
       }}
     >
       {children}

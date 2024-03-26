@@ -124,7 +124,6 @@ const EditQuestion = () => {
       question: selectedQuestion.question
     },
     onSubmit: values => {
-      console.log(values);
       const editedQuestion = {
         edited: true,
         ...values
