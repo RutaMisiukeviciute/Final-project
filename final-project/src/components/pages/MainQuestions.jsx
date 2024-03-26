@@ -2,15 +2,15 @@ import Question from "../UI/Question";
 import QuestionContext from "../../contexts/QuestionContext";
 import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import DropdownMenu from "../UI/DropdownMenu";
 
 const StyledSection = styled.section`
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 
   >.a{
     width: 180px;
@@ -38,6 +38,14 @@ const StyledSection = styled.section`
  >div {
   width:95%;
  }
+
+ >.filter{
+  display: flex;
+  width: 200px;
+  align-items: baseline;
+  justify-content: end;
+  gap: 10px;
+ }
 `;
 const MainQuestions = () => {
 
@@ -46,14 +54,41 @@ const MainQuestions = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [selectedFilter, setSelectedFilter] = useState('all');
+
+  const handleFilterChange = (option) => {
+    setSelectedFilter(option.value);
+  };
+
+  const filteredQuestions = questions.filter(question => {
+    if (selectedFilter === 'answered') {
+      return answersCount[question.id] > 0;
+    } else if (selectedFilter === 'not answered') {
+      return answersCount[question.id] === 0;
+    } else {
+      return true;
+    }
+
+  });
+
+  const options = [
+    { label: 'All', value: 'all' },
+    { label: 'Answered', value: 'answered' },
+    { label: 'Not answered', value: 'not answered' },
+  ];
+
   return (
     <StyledSection>
+      <div className="filter">
+        <h3>Filter:</h3>
+        <DropdownMenu options={options} onChange={handleFilterChange} />
+      </div>
       {loggedInUser &&
         <Link to="/askNew" className="a">Ask new question</Link>
       }
       <div>
         {
-          questions.map(el => {
+          filteredQuestions.map(el => {
             return <Question
               key={el.id}
               data={el}

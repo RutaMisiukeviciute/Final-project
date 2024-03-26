@@ -54,7 +54,7 @@ background-color: #e0ccbe;
             align-items: center;
             cursor: pointer;
 
-                box-shadow: 1px 3px 10px 0 #3c3633;
+            box-shadow: 1px 3px 10px 0 #3c3633;
 
                 &:hover{
                   box-shadow: -1px -3px 10px 0 #1e1e1e inset;
