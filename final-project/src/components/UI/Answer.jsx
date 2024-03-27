@@ -22,6 +22,11 @@ const StyledOneAswer = styled.div`
   width: 90%;
   margin: 20px 5%;
   padding: 0 10px;
+  height: 160px;
+  padding-left: 20px;
+  >p{
+      font-size: 22px;
+    }
 
   >div{
     h1{
@@ -34,6 +39,8 @@ const StyledOneAswer = styled.div`
     gap: 15px ;
     font-size: 22px;
     margin-left: 10px;
+
+    
 
     
 
@@ -72,7 +79,7 @@ const StyledOneAswer = styled.div`
 
   >.editDelete{
     position: absolute;
-    bottom: 10px;
+    bottom: 6px;
     right: 10px;
     font-size: 22px;
 
@@ -80,6 +87,35 @@ const StyledOneAswer = styled.div`
       background-color: transparent;
       border: none;
       cursor: pointer;
+    }
+  }
+
+  >.vote{
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+
+
+    >button{
+      background-color: transparent;
+      border: none;
+      color: #747264;
+      cursor: pointer;
+      
+      >i{
+        font-size: 20px;
+        line-height:1.5;
+      }
+    }
+
+    .greenhand{
+      color: #0b550b;
+    }
+
+    .redhand{
+      color: #940000;
     }
   }
 `;
@@ -148,7 +184,6 @@ const Answer = ({ data, answerAutors }) => {
     <StyledOneAswer>
       <h1>{data.answer}</h1>
       <div>
-
         {data.edited && <p>Edited</p>}
         <p>Answered by {answerAutors}</p>
       </div>
@@ -160,9 +195,9 @@ const Answer = ({ data, answerAutors }) => {
           <button onClick={() => setShow2(true)}><i className="bi bi-pencil-square"></i></button>
           <button onClick={() => setShow(true)}><i className="bi bi-trash3" ></i></button>
         </div>}
-      {loggedInUser && <div>
-        <button onClick={handleLikeClick}>Like </button>
-        <button onClick={handleDislikeClick}>Dislike </button>
+      {loggedInUser && <div className="vote">
+        <button onClick={handleLikeClick} className={data.likes && data.likes.find(like => like === loggedInUser.id) && "greenhand"}><i className="bi bi-hand-thumbs-up-fill"></i> </button>
+        <button onClick={handleDislikeClick} className={data.dislikes && data.dislikes.find(dislike => dislike === loggedInUser.id) && "redhand"}><i className="bi bi-hand-thumbs-down-fill"></i> </button>
       </div>}
       <ModalDialog isOpen={show}>
         Are you sure you want delete this?
