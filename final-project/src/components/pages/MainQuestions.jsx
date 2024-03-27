@@ -2,15 +2,15 @@ import Question from "../UI/Question";
 import QuestionContext from "../../contexts/QuestionContext";
 import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import DropdownMenu from "../UI/DropdownMenu";
 
 const StyledSection = styled.section`
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 
   >.a{
     width: 180px;
@@ -38,6 +38,14 @@ const StyledSection = styled.section`
  >div {
   width:95%;
  }
+
+ >.filter{
+  display: flex;
+  width: 200px;
+  align-items: baseline;
+  justify-content: end;
+  gap: 10px;
+ }
 `;
 const MainQuestions = () => {
 
@@ -46,14 +54,86 @@ const MainQuestions = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [sortDateOption, setSortDateOption] = useState('unsorted');
+  const [sortAnswersOption, setSortAnswersOption] = useState('unsorted');
+
+  const handleFilterChange = (option) => {
+    setSelectedFilter(option.value);
+  };
+
+  const handleSortDateClick = () => {
+    const newSortDateOption =
+      sortDateOption === 'unsorted' ? 'newestToOldest' :
+        sortDateOption === 'newestToOldest' ? 'oldestToNewest' :
+          'unsorted';
+
+    setSortDateOption(newSortDateOption);
+  };
+
+  const handleSortAnswersClick = () => {
+    const newSortAnswersOption =
+      sortAnswersOption === 'unsorted' ? 'descending' :
+        sortAnswersOption === 'descending' ? 'ascending' :
+          'unsorted';
+
+    setSortAnswersOption(newSortAnswersOption);
+  };
+
+  const filteredQuestions = questions.filter(question =>
+    selectedFilter === 'answered' ? answersCount[question.id] > 0 :
+      selectedFilter === 'not answered' ? answersCount[question.id] === 0 :
+        true
+  );
+
+  const sortedByDateQuestions = () => {
+    return sortDateOption === 'newestToOldest'
+      ? [...sortedByAnswersQuestions()].sort((a, b) => new Date(b.date).setHours(0, 0, 0, 0) - new Date(a.date).setHours(0, 0, 0, 0))
+      : sortDateOption === 'oldestToNewest'
+        ? [...sortedByAnswersQuestions()].sort((a, b) => new Date(a.date).setHours(0, 0, 0, 0) - new Date(b.date).setHours(0, 0, 0, 0))
+        : sortedByAnswersQuestions();
+  };
+
+  const sortedByAnswersQuestions = () => {
+    return sortAnswersOption === 'ascending'
+      ? [...filteredQuestions].sort((a, b) => answersCount[a.id] - answersCount[b.id])
+      : sortAnswersOption === 'descending'
+        ? [...filteredQuestions].sort((a, b) => answersCount[b.id] - answersCount[a.id])
+        : filteredQuestions;
+  };
+
+  const options = [
+    { label: 'All', value: 'all' },
+    { label: 'Answered', value: 'answered' },
+    { label: 'Not answered', value: 'not answered' },
+  ];
+
   return (
     <StyledSection>
+      <div className="filter">
+        <h3>Filter:</h3>
+        <DropdownMenu options={options} onChange={handleFilterChange} />
+      </div>
       {loggedInUser &&
         <Link to="/askNew" className="a">Ask new question</Link>
       }
       <div>
+        <button onClick={handleSortDateClick}>
+          {sortDateOption === 'unsorted' && 'unsorted'}
+          {sortDateOption === 'newestToOldest' && 'newest to oldest'}
+          {sortDateOption === 'oldestToNewest' && 'oldest to newest'}
+        </button>
+      </div>
+      <div>
+        <button onClick={handleSortAnswersClick}>
+          {sortAnswersOption === 'unsorted' && 'unsorted'}
+          {sortAnswersOption === 'ascending' && 'ascending'}
+          {sortAnswersOption === 'descending' && 'descending'}
+        </button>
+      </div>
+      <div>
         {
-          questions.map(el => {
+          sortedByDateQuestions().map(el => {
             return <Question
               key={el.id}
               data={el}
