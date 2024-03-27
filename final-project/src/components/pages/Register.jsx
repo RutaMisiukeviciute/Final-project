@@ -44,7 +44,7 @@ const StyledSection = styled.section`
     }
 
     > span{
-        grid-column: span 3;
+        grid-column: span 2;
         color: #950000;
         text-align: center;
       }
@@ -70,7 +70,6 @@ const StyledSection = styled.section`
         box-shadow: -1px -3px 10px 0 #1E1E1E inset;
       }
     }
-  
   }
 `;
 

@@ -6,7 +6,6 @@ import ModalDialog2 from "./ModalDialog2";
 import QuestionContext from "../../contexts/QuestionContext";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { v4 as uuid } from 'uuid';
 
 const StyledOneAswer = styled.div`
  box-sizing: border-box;
@@ -27,23 +26,16 @@ const StyledOneAswer = styled.div`
   >p{
       font-size: 22px;
     }
-
   >div{
     h1{
     text-align: left;
     margin-left: 10px;
   }
-
   >div{
     display: flex;
     gap: 15px ;
     font-size: 22px;
     margin-left: 10px;
-
-    
-
-    
-
   }
 
   >p:first-of-type{
@@ -76,7 +68,6 @@ const StyledOneAswer = styled.div`
     >.zero{
     color: #1E1E1E;
   }
-
   >.editDelete{
     position: absolute;
     bottom: 6px;
@@ -89,15 +80,12 @@ const StyledOneAswer = styled.div`
       cursor: pointer;
     }
   }
-
   >.vote{
     position: absolute;
     right: 10px;
     top: 60px;
     display: flex;
     flex-direction: column;
-
-
     >button{
       background-color: transparent;
       border: none;
@@ -109,11 +97,9 @@ const StyledOneAswer = styled.div`
         line-height:1.5;
       }
     }
-
     .greenhand{
       color: #0b550b;
     }
-
     .redhand{
       color: #940000;
     }
@@ -125,7 +111,6 @@ const Answer = ({ data, answerAutors }) => {
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const { deleteAnswer, editAnswer } = useContext(QuestionContext);
-
 
   const formik = useFormik({
     initialValues: {
@@ -163,7 +148,6 @@ const Answer = ({ data, answerAutors }) => {
       data.likes.splice(data.likes.indexOf(loggedInUser.id), 1);
     }
     editAnswer(data);
-
   };
 
   const handleDislikeClick = () => {

@@ -101,8 +101,6 @@ const QuestionProvider = ({ children }) => {
 
   };
 
-
-
   useEffect(() => {
     const getQuestionInfo = () => {
       const counts = {};
@@ -125,7 +123,6 @@ const QuestionProvider = ({ children }) => {
   }, [questions, answers, users]);
 
   useEffect(() => {
-
     const getAnswersInfo = () => {
       const names = {};
       answers.forEach(answer => {

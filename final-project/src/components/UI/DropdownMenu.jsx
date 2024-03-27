@@ -19,7 +19,7 @@ height: 80px;
     &:hover{
       box-shadow: -1px -3px 10px 0 #1e1e1e inset;
     }
-}
+  }
 
 >ul{
   position: absolute;

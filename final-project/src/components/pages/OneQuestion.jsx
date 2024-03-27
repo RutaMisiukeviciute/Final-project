@@ -224,7 +224,6 @@ const OneQuestion = () => {
     })
   });
 
-  console.log(question.likes);
 
   return (<>
     <StyledOneQuestion>
