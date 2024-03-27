@@ -97,7 +97,8 @@ const Answer = ({ data, answerAutors }) => {
       id: data.id,
       questionId: data.questionId,
       userId: data.userId,
-      rating: data.rating,
+      likes: data.likes,
+      dislikes: data.dislikes
     },
     onSubmit: values => {
       const editedAnswer = {
@@ -109,12 +110,37 @@ const Answer = ({ data, answerAutors }) => {
     },
     validationSchema: Yup.object({
       answer: Yup.string()
-        .min(5, 'Question must be at least 5 symbols length')
-        .max(500, "Question can't be longer than 500 symbols")
+        .min(5, 'Answer must be at least 5 symbols length')
+        .max(500, "Answer can't be longer than 500 symbols")
         .required('This field must be filled')
         .trim()
     })
   });
+
+  const handleLikeClick = () => {
+    if (!data.likes.find(user => user === loggedInUser.id)) {
+      data.likes.push(loggedInUser.id)
+      if (data.dislikes.find(user => user === loggedInUser.id)) {
+        data.dislikes.splice(data.dislikes.indexOf(loggedInUser.id), 1);
+      }
+    } else {
+      data.likes.splice(data.likes.indexOf(loggedInUser.id), 1);
+    }
+    editAnswer(data);
+
+  };
+
+  const handleDislikeClick = () => {
+    if (!data.dislikes.find(user => user === loggedInUser.id)) {
+      data.dislikes.push(loggedInUser.id)
+      if (data.likes.find(user => user === loggedInUser.id)) {
+        data.likes.splice(data.likes.indexOf(loggedInUser.id), 1);
+      }
+    } else {
+      data.dislikes.splice(data.dislikes.indexOf(loggedInUser.id), 1);
+    }
+    editAnswer(data);
+  };
 
 
 
@@ -126,14 +152,18 @@ const Answer = ({ data, answerAutors }) => {
         {data.edited && <p>Edited</p>}
         <p>Answered by {answerAutors}</p>
       </div>
-      <p className={data.rating > 0 ? "green" : data.rating < 0 ? "red" : "zero"}>
-        {data.rating} rating
+      <p className={(data.likes.length - data.dislikes.length) > 0 ? "green" : (data.likes.length - data.dislikes.length) < 0 ? "red" : "zero"}>
+        {data.likes.length - data.dislikes.length} rating
       </p>
       {loggedInUser.id === data.userId &&
         <div className="editDelete">
           <button onClick={() => setShow2(true)}><i className="bi bi-pencil-square"></i></button>
           <button onClick={() => setShow(true)}><i className="bi bi-trash3" ></i></button>
         </div>}
+      {loggedInUser && <div>
+        <button onClick={handleLikeClick}>Like </button>
+        <button onClick={handleDislikeClick}>Dislike </button>
+      </div>}
       <ModalDialog isOpen={show}>
         Are you sure you want delete this?
         <br />

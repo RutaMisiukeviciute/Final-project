@@ -169,7 +169,8 @@ const OneQuestion = () => {
         id: uuid(),
         questionId: id,
         userId: loggedInUser.id,
-        rating: 0,
+        likes: [],
+        dislikes: [],
         edited: false,
         ...values
       }
@@ -206,10 +207,11 @@ const OneQuestion = () => {
             </button>
           </div>
         }
-        <div>
-          <button onClick={handleLikeClick}>Like </button>
-          <button onClick={handleDislikeClick}>Dislike </button>
-        </div>
+        {loggedInUser &&
+          <div>
+            <button onClick={handleLikeClick}>Like </button>
+            <button onClick={handleDislikeClick}>Dislike </button>
+          </div>}
       </div>
       <ModalDialog isOpen={show}>
         Are you sure you want delete this?
