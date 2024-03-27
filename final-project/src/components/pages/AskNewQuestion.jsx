@@ -114,6 +114,7 @@ const AskNewQuestion = () => {
   const navigate = useNavigate();
   const { loggedInUser } = useContext(UsersContext);
   const { addNewQuestion } = useContext(QuestionContext);
+  const date = new Date();
 
   const formik = useFormik({
     initialValues: {
@@ -126,6 +127,7 @@ const AskNewQuestion = () => {
         userId: loggedInUser.id,
         rating: 0,
         edited: false,
+        date: date.toISOString(),
         ...values
       }
       addNewQuestion(newQuestion);

@@ -79,7 +79,7 @@ const Question = ({ data, countNum, questionAuthors }) => {
           <p >{countNum} answers</p>
         </div>
         {data.edited && <p>Edited</p>}
-        <p>Asked by {questionAuthors}</p>
+        <p>Asked by {questionAuthors} at {data.date.substring(0, 10)}</p>
       </Link>
 
     </StyledQuestion>

@@ -55,21 +55,52 @@ const MainQuestions = () => {
   const location = useLocation();
 
   const [selectedFilter, setSelectedFilter] = useState('all');
+  const [sortDateOption, setSortDateOption] = useState('unsorted');
+  const [sortAnswersOption, setSortAnswersOption] = useState('unsorted');
 
   const handleFilterChange = (option) => {
     setSelectedFilter(option.value);
   };
 
-  const filteredQuestions = questions.filter(question => {
-    if (selectedFilter === 'answered') {
-      return answersCount[question.id] > 0;
-    } else if (selectedFilter === 'not answered') {
-      return answersCount[question.id] === 0;
-    } else {
-      return true;
-    }
+  const handleSortDateClick = () => {
+    const newSortDateOption =
+      sortDateOption === 'unsorted' ? 'newestToOldest' :
+        sortDateOption === 'newestToOldest' ? 'oldestToNewest' :
+          'unsorted';
 
-  });
+    setSortDateOption(newSortDateOption);
+  };
+
+  const handleSortAnswersClick = () => {
+    const newSortAnswersOption =
+      sortAnswersOption === 'unsorted' ? 'descending' :
+        sortAnswersOption === 'descending' ? 'ascending' :
+          'unsorted';
+
+    setSortAnswersOption(newSortAnswersOption);
+  };
+
+  const filteredQuestions = questions.filter(question =>
+    selectedFilter === 'answered' ? answersCount[question.id] > 0 :
+      selectedFilter === 'not answered' ? answersCount[question.id] === 0 :
+        true
+  );
+
+  const sortedByDateQuestions = () => {
+    return sortDateOption === 'newestToOldest'
+      ? [...sortedByAnswersQuestions()].sort((a, b) => new Date(b.date).setHours(0, 0, 0, 0) - new Date(a.date).setHours(0, 0, 0, 0))
+      : sortDateOption === 'oldestToNewest'
+        ? [...sortedByAnswersQuestions()].sort((a, b) => new Date(a.date).setHours(0, 0, 0, 0) - new Date(b.date).setHours(0, 0, 0, 0))
+        : sortedByAnswersQuestions();
+  };
+
+  const sortedByAnswersQuestions = () => {
+    return sortAnswersOption === 'ascending'
+      ? [...filteredQuestions].sort((a, b) => answersCount[a.id] - answersCount[b.id])
+      : sortAnswersOption === 'descending'
+        ? [...filteredQuestions].sort((a, b) => answersCount[b.id] - answersCount[a.id])
+        : filteredQuestions;
+  };
 
   const options = [
     { label: 'All', value: 'all' },
@@ -87,8 +118,22 @@ const MainQuestions = () => {
         <Link to="/askNew" className="a">Ask new question</Link>
       }
       <div>
+        <button onClick={handleSortDateClick}>
+          {sortDateOption === 'unsorted' && 'unsorted'}
+          {sortDateOption === 'newestToOldest' && 'newest to oldest'}
+          {sortDateOption === 'oldestToNewest' && 'oldest to newest'}
+        </button>
+      </div>
+      <div>
+        <button onClick={handleSortAnswersClick}>
+          {sortAnswersOption === 'unsorted' && 'unsorted'}
+          {sortAnswersOption === 'ascending' && 'ascending'}
+          {sortAnswersOption === 'descending' && 'descending'}
+        </button>
+      </div>
+      <div>
         {
-          filteredQuestions.map(el => {
+          sortedByDateQuestions().map(el => {
             return <Question
               key={el.id}
               data={el}
