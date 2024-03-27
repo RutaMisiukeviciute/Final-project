@@ -33,12 +33,10 @@
       "date": "2024-03-27T14:30:00Z",
       "likes": [
         "1",
-        "0",
-        null
+        "2e92"
       ],
       "dislikes": [
-        "2e92",
-        null
+        "0"
       ]
     },
     {
@@ -124,11 +122,10 @@
       "questionId": "0",
       "userId": "1",
       "answer": "right here",
-      "likes": [
-        "0"
-      ],
+      "likes": [],
       "dislikes": [
-        "1"
+        "1",
+        "0"
       ],
       "edited": false
     },
@@ -258,7 +255,8 @@
       "questionId": "0",
       "userId": "1",
       "likes": [
-        "1"
+        "1",
+        "0"
       ],
       "dislikes": [],
       "edited": false,

@@ -14,6 +14,7 @@ height: 80px;
     box-shadow: 1px 3px 10px 0 #3c3633;
     color: #eeedeb;
     font-size: 22px;
+    cursor: pointer;
 
     &:hover{
       box-shadow: -1px -3px 10px 0 #1e1e1e inset;

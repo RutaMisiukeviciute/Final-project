@@ -30,6 +30,34 @@ const StyledOneQuestion = styled.section`
     margin-left: 10px;
   }
 
+  >.vote{
+    position: absolute;
+    right: 10px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+
+
+    >button{
+      background-color: transparent;
+      border: none;
+      color: #747264;
+      cursor: pointer;
+      
+      >i{
+        font-size: 25px;
+      }
+    }
+
+    .greenhand{
+      color: #0b550b;
+    }
+
+    .redhand{
+      color: #940000;
+    }
+  }
+
   >div{
     display: flex;
     gap: 15px ;
@@ -45,6 +73,7 @@ const StyledOneQuestion = styled.section`
     >.zero{
     color: #1E1E1E;
   }
+
 
   }
 
@@ -67,6 +96,17 @@ const StyledOneQuestion = styled.section`
     position: absolute;
     bottom: 10px;
     right: 10px;
+
+    >a{
+      color: #1e1e1e;
+    }
+
+    >button{
+      background-color: transparent;
+      border: none;
+      color: #1e1e1e;
+      cursor: pointer;
+    }
   }
   }
 `;
@@ -127,7 +167,6 @@ const OneQuestion = () => {
   const [show, setShow] = useState(false);
 
 
-
   useEffect(() => {
     fetch(`http://localhost:8080/questions/${id}`)
       .then(res => res.json())
@@ -144,7 +183,6 @@ const OneQuestion = () => {
       question.likes.splice(question.likes.indexOf(loggedInUser.id), 1);
     }
     editQuestion(question);
-
   };
 
   const handleDislikeClick = () => {
@@ -181,9 +219,12 @@ const OneQuestion = () => {
       answer: Yup.string()
         .min(5, 'Answer must be at least 5 symbols length')
         .max(500, "Answer can't be longer than 500 symbols")
+        .required('Required')
         .trim()
     })
   });
+
+  console.log(question.likes);
 
   return (<>
     <StyledOneQuestion>
@@ -207,9 +248,9 @@ const OneQuestion = () => {
           </div>
         }
         {loggedInUser &&
-          <div>
-            <button onClick={handleLikeClick}>Like </button>
-            <button onClick={handleDislikeClick}>Dislike </button>
+          <div className="vote">
+            <button onClick={handleLikeClick} className={question.likes && question.likes.find(like => like === loggedInUser.id) && "greenhand"}><i className="bi bi-hand-thumbs-up-fill"></i> </button>
+            <button onClick={handleDislikeClick} className={question.dislikes && question.dislikes.find(dislike => dislike === loggedInUser.id) && "redhand"}><i className="bi bi-hand-thumbs-down-fill"></i> </button>
           </div>}
       </div>
       <ModalDialog isOpen={show}>

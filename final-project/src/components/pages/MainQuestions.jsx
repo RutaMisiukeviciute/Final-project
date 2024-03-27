@@ -27,6 +27,7 @@ const StyledSection = styled.section`
     justify-content: center;
     margin-bottom: 10px;
     align-self: flex-end;
+    cursor: pointer;
     
     
 
@@ -49,6 +50,7 @@ const StyledSection = styled.section`
   align-items: baseline;
   justify-content: end;
   gap: 10px;
+  
  }
 
  >.sort{
@@ -65,6 +67,7 @@ const StyledSection = styled.section`
     box-shadow: 1px 3px 10px 0 #3c3633;
     color: #eeedeb;
     font-size: 22px;
+    cursor: pointer;
 
     &:hover{
       box-shadow: -1px -3px 10px 0 #1e1e1e inset;
