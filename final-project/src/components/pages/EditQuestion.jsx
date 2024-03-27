@@ -143,7 +143,7 @@ const EditQuestion = () => {
   });
   return (
     <StyledSection>
-      <h1>Ask new question</h1>
+      <h1>Edit question</h1>
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import QuestionContext from "../../contexts/QuestionContext";
 import UsersContext from "../../contexts/UsersContext";
 import { Link, useNavigate } from "react-router-dom";
-import ModalDialog from "../UI/ModalDialog";
+import ModalDialogDelete from "../UI/ModalDialogDelete";
 import Answer from "../UI/Answer";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
@@ -252,14 +252,14 @@ const OneQuestion = () => {
             <button onClick={handleDislikeClick} className={question.dislikes && question.dislikes.find(dislike => dislike === loggedInUser.id) && "redhand"}><i className="bi bi-hand-thumbs-down-fill"></i> </button>
           </div>}
       </div>
-      <ModalDialog isOpen={show}>
+      <ModalDialogDelete isOpen={show}>
         Are you sure you want delete this?
         <br />
         <button onClick={() => { deleteQuestion(id); setShow(false); navigate('/') }}>Yes</button>
         <button onClick={() => {
           setShow(false);
         }}>No</button>
-      </ModalDialog>
+      </ModalDialogDelete>
     </StyledOneQuestion>
 
     <StyledAnswer>

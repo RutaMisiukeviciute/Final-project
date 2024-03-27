@@ -130,15 +130,15 @@
       "edited": false
     },
     {
+      "edited": true,
+      "answer": "thanks I found it myself",
       "id": "1",
       "questionId": "0",
       "userId": "0",
-      "answer": "thank I found it myself",
       "likes": [
         "0"
       ],
-      "dislikes": [],
-      "edited": true
+      "dislikes": []
     },
     {
       "id": "10",

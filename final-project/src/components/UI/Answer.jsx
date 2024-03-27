@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import { useContext, useState } from "react";
-import ModalDialog from "../UI/ModalDialog";
-import ModalDialog2 from "./ModalDialog2";
+import ModalDialogDelete from "./ModalDialogDelete";
+import ModalDialogEdit from "./ModalDialogEdit";
 import QuestionContext from "../../contexts/QuestionContext";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
@@ -183,16 +183,16 @@ const Answer = ({ data, answerAutors }) => {
         <button onClick={handleLikeClick} className={data.likes && data.likes.find(like => like === loggedInUser.id) && "greenhand"}><i className="bi bi-hand-thumbs-up-fill"></i> </button>
         <button onClick={handleDislikeClick} className={data.dislikes && data.dislikes.find(dislike => dislike === loggedInUser.id) && "redhand"}><i className="bi bi-hand-thumbs-down-fill"></i> </button>
       </div>}
-      <ModalDialog isOpen={show}>
+      <ModalDialogDelete isOpen={show}>
         Are you sure you want delete this?
         <br />
         <button onClick={() => { deleteAnswer(data.id); setShow(false) }}>Yes</button>
         <button onClick={() => {
           setShow(false);
         }}>No</button>
-      </ModalDialog>
+      </ModalDialogDelete>
 
-      <ModalDialog2 isOpen={show2}>
+      <ModalDialogEdit isOpen={show2}>
         <form onSubmit={formik.handleSubmit}>
           <div>
             <textarea
@@ -208,11 +208,10 @@ const Answer = ({ data, answerAutors }) => {
           </div>
           <input type="submit" value="Save" />
         </form>
-        <br />
         <button onClick={() => {
           setShow2(false);
         }}>Close</button>
-      </ModalDialog2>
+      </ModalDialogEdit>
     </StyledOneAswer>
   );
 }
