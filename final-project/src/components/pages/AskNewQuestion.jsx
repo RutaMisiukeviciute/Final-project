@@ -125,9 +125,10 @@ const AskNewQuestion = () => {
       const newQuestion = {
         id: uuid(),
         userId: loggedInUser.id,
-        rating: 0,
         edited: false,
         date: date.toISOString(),
+        likes: [],
+        dislikes: [],
         ...values
       }
       addNewQuestion(newQuestion);

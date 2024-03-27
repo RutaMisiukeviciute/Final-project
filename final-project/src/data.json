@@ -29,54 +29,89 @@
       "userId": "0",
       "title": "My first question",
       "question": "I have a question, where can I put my question?",
-      "rating": -10,
       "edited": true,
-      "date": "2024-03-27T14:30:00Z"
+      "date": "2024-03-27T14:30:00Z",
+      "likes": [
+        "1",
+        "0"
+      ],
+      "dislikes": [
+        "2e92"
+      ]
     },
     {
       "id": "10",
       "userId": "0",
       "title": "My first question new",
       "question": "I have a question, where can I put my question?",
-      "rating": -10,
       "edited": true,
-      "date": "2024-03-27T14:33:00Z"
+      "date": "2024-03-27T14:33:00Z",
+      "likes": [],
+      "dislikes": [
+        "2e92",
+        "1",
+        "0"
+      ]
     },
     {
       "edited": true,
       "id": "1",
       "userId": "0",
-      "rating": 0,
       "title": "My second question tatataratatatata",
       "question": "I have a question, where can I put my other question?",
-      "date": "2024-03-27T15:50:00Z"
+      "date": "2024-03-27T15:50:00Z",
+      "likes": [],
+      "dislikes": []
     },
     {
       "edited": true,
       "id": "adac58dc-252c-436d-ac97-3e49373a44b2",
       "userId": "1",
-      "rating": 0,
       "title": "testukas",
       "question": "neeeeeeeeeeeeeeeeeeeee",
-      "date": "2024-03-26T15:50:00Z"
+      "date": "2024-03-26T15:50:00Z",
+      "likes": [
+        "0"
+      ],
+      "dislikes": []
     },
     {
       "id": "b73105db-83bc-47f6-8be5-a39167a827bc",
       "userId": "2e92",
-      "rating": 0,
       "edited": false,
       "title": "ajdhjfhasfkjl",
       "question": "afsfsadfasf",
-      "date": "2024-03-21T18:50:00Z"
+      "date": "2024-03-21T18:50:00Z",
+      "likes": [],
+      "dislikes": [
+        "0"
+      ]
     },
     {
       "id": "0a467ad7-3d22-4766-8033-42461eb7efe2",
       "userId": "0",
-      "rating": 0,
       "edited": false,
       "date": "2024-03-26T13:58:54.286Z",
       "title": "my new question",
-      "question": "Just trying some time things"
+      "question": "Just trying some time things",
+      "likes": [
+        "0"
+      ],
+      "dislikes": []
+    },
+    {
+      "id": "3fff2b53-da06-4b74-a2d7-fca383bf0588",
+      "userId": "0",
+      "edited": false,
+      "date": "2024-03-27T11:56:50.316Z",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [
+        "1"
+      ],
+      "title": "naujas tests",
+      "question": "tatatatatattaatatata"
     }
   ],
   "answers": [

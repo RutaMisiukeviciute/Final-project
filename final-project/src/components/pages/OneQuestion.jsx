@@ -122,10 +122,11 @@ const OneQuestion = () => {
 
   const { id } = useParams();
   const [question, setQuestion] = useState({});
-  const { answersCount, questionAuthors, deleteQuestion, questionAnswers, answerAutors, addNewAnswer } = useContext(QuestionContext);
+  const { answersCount, questionAuthors, deleteQuestion, questionAnswers, answerAutors, addNewAnswer, editQuestion } = useContext(QuestionContext);
   const { loggedInUser } = useContext(UsersContext);
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+
 
 
   useEffect(() => {
@@ -133,6 +134,31 @@ const OneQuestion = () => {
       .then(res => res.json())
       .then(data => setQuestion(data))
   }, [id]);
+
+  const handleLikeClick = () => {
+    if (!question.likes.find(user => user === loggedInUser.id)) {
+      question.likes.push(loggedInUser.id)
+      if (question.dislikes.find(user => user === loggedInUser.id)) {
+        question.dislikes.splice(question.dislikes.indexOf(loggedInUser.id), 1);
+      }
+    } else {
+      question.likes.splice(question.likes.indexOf(loggedInUser.id), 1);
+    }
+    editQuestion(question);
+
+  };
+
+  const handleDislikeClick = () => {
+    if (!question.dislikes.find(user => user === loggedInUser.id)) {
+      question.dislikes.push(loggedInUser.id)
+      if (question.likes.find(user => user === loggedInUser.id)) {
+        question.likes.splice(question.likes.indexOf(loggedInUser.id), 1);
+      }
+    } else {
+      question.dislikes.splice(question.dislikes.indexOf(loggedInUser.id), 1);
+    }
+    editQuestion(question);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -165,9 +191,9 @@ const OneQuestion = () => {
         <h1>{question.title}</h1>
         <h3>{question.question}</h3>
         <div>
-          <p className={question.rating > 0 ? "green" : question.rating < 0 ? "red" : "zero"}>
-            {question.rating} rating
-          </p>
+          {question.likes && <p className={(question.likes.length - question.dislikes.length) > 0 ? "green" : (question.likes.length - question.dislikes.length) < 0 ? "red" : "zero"}>
+            {question.likes.length - question.dislikes.length} rating
+          </p>}
           <p >{answersCount[id]} answers</p>
         </div>
         {question.edited && <p>Edited</p>}
@@ -180,6 +206,10 @@ const OneQuestion = () => {
             </button>
           </div>
         }
+        <div>
+          <button onClick={handleLikeClick}>Like </button>
+          <button onClick={handleDislikeClick}>Dislike </button>
+        </div>
       </div>
       <ModalDialog isOpen={show}>
         Are you sure you want delete this?

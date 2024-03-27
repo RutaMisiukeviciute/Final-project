@@ -119,9 +119,10 @@ const EditQuestion = () => {
     initialValues: {
       id: selectedQuestion.id,
       userId: selectedQuestion.userId,
-      rating: selectedQuestion.rating,
       title: selectedQuestion.title,
-      question: selectedQuestion.question
+      question: selectedQuestion.question,
+      likes: selectedQuestion.likes,
+      dislikes: selectedQuestion.dislikes
     },
     onSubmit: values => {
       const editedQuestion = {

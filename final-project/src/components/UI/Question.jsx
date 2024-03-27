@@ -73,9 +73,9 @@ const Question = ({ data, countNum, questionAuthors }) => {
       <Link to={`/${data.id}`}>
         <h1>{data.title}</h1>
         <div>
-          <p className={data.rating > 0 ? "green" : data.rating < 0 ? "red" : "zero"}>
-            {data.rating} rating
-          </p>
+          {data.likes && <p className={(data.likes.length - data.dislikes.length) > 0 ? "green" : (data.likes.length - data.dislikes.length) < 0 ? "red" : "zero"}>
+            {data.likes.length - data.dislikes.length} rating
+          </p>}
           <p >{countNum} answers</p>
         </div>
         {data.edited && <p>Edited</p>}
