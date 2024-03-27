@@ -114,7 +114,8 @@ const QuestionProvider = ({ children }) => {
         const questionAnswers = answers.filter(el1 => el1.questionId === questionId);
         counts[questionId] = questionAnswers.length;
 
-        names[questionId] = users.find(user => user.id === el.userId).username;
+
+        names[questionId] = users.find(user => user && user.id === el.userId).username;
         qAnswers[questionId] = questionAnswers;
       });
       setAnswersCount(counts)
