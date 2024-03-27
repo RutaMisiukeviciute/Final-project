@@ -39,13 +39,39 @@ const StyledSection = styled.section`
   width:95%;
  }
 
- >.filter{
+>.SortAndFilter{
+  display: flex;
+  justify-content: space-evenly;
+
+  >.filter{
   display: flex;
   width: 200px;
   align-items: baseline;
   justify-content: end;
   gap: 10px;
  }
+
+ >.sort{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+
+  >button{
+    width: 180px;
+    height: 40px;
+    border: 1px solid #3c3633;
+    border-radius: 9px;
+    background-color: #3c3633;
+    box-shadow: 1px 3px 10px 0 #3c3633;
+    color: #eeedeb;
+    font-size: 22px;
+
+    &:hover{
+      box-shadow: -1px -3px 10px 0 #1e1e1e inset;
+    }
+  }
+ }
+}
 `;
 const MainQuestions = () => {
 
@@ -110,27 +136,31 @@ const MainQuestions = () => {
 
   return (
     <StyledSection>
-      <div className="filter">
-        <h3>Filter:</h3>
-        <DropdownMenu options={options} onChange={handleFilterChange} />
+      <div className="SortAndFilter">
+
+        <div className="sort">
+          <h3>Sort:</h3>
+          <button onClick={handleSortDateClick}>
+            {sortDateOption === 'unsorted' && 'Date'}
+            {sortDateOption === 'newestToOldest' && <>Date <i className="bi bi-sort-up"></i></>}
+            {sortDateOption === 'oldestToNewest' && <>Date <i className="bi bi-sort-down-alt"></i></>}
+          </button>
+          <button onClick={handleSortAnswersClick}>
+            {sortAnswersOption === 'unsorted' && 'Answers'}
+            {sortAnswersOption === 'ascending' && <>Answers <i className="bi bi-sort-down-alt"></i></>}
+            {sortAnswersOption === 'descending' && <>Answers <i className="bi bi-sort-up"></i></>}
+          </button>
+        </div>
+        <div className="filter">
+          <h3>Filter:</h3>
+          <DropdownMenu options={options} onChange={handleFilterChange} />
+        </div>
+
+
       </div>
       {loggedInUser &&
         <Link to="/askNew" className="a">Ask new question</Link>
       }
-      <div>
-        <button onClick={handleSortDateClick}>
-          {sortDateOption === 'unsorted' && 'unsorted'}
-          {sortDateOption === 'newestToOldest' && 'newest to oldest'}
-          {sortDateOption === 'oldestToNewest' && 'oldest to newest'}
-        </button>
-      </div>
-      <div>
-        <button onClick={handleSortAnswersClick}>
-          {sortAnswersOption === 'unsorted' && 'unsorted'}
-          {sortAnswersOption === 'ascending' && 'ascending'}
-          {sortAnswersOption === 'descending' && 'descending'}
-        </button>
-      </div>
       <div>
         {
           sortedByDateQuestions().map(el => {

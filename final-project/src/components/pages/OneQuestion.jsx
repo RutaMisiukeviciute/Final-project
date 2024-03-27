@@ -91,7 +91,6 @@ const StyledAnswer = styled.section`
         resize: vertical;
         
         &::placeholder{
-          /* padding-top: 70px; */
           font-size: 20px;
           color: #3c3633;
         }
