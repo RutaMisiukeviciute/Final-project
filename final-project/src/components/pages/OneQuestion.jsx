@@ -152,6 +152,10 @@ const StyledAnswer = styled.section`
         box-shadow: -1px -3px 10px 0 #1E1E1E inset;
       }
     }
+    >p{
+      color: #940000;
+      font-size: 22px;
+    }
   }
 }
 
@@ -285,8 +289,6 @@ const OneQuestion = () => {
               key={el.id}
               data={el}
               answerAutors={answerAutors[el.id]}
-            // location={location}
-
             />
           })
         }
