@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import { useContext, useState } from "react";
-import ModalDialog from "../UI/ModalDialog";
-import ModalDialog2 from "./ModalDialog2";
+import ModalDialogDelete from "./ModalDialogDelete";
+import ModalDialogEdit from "./ModalDialogEdit";
 import QuestionContext from "../../contexts/QuestionContext";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { v4 as uuid } from 'uuid';
 
 const StyledOneAswer = styled.div`
  box-sizing: border-box;
@@ -27,23 +26,16 @@ const StyledOneAswer = styled.div`
   >p{
       font-size: 22px;
     }
-
   >div{
     h1{
     text-align: left;
     margin-left: 10px;
   }
-
   >div{
     display: flex;
     gap: 15px ;
     font-size: 22px;
     margin-left: 10px;
-
-    
-
-    
-
   }
 
   >p:first-of-type{
@@ -76,7 +68,6 @@ const StyledOneAswer = styled.div`
     >.zero{
     color: #1E1E1E;
   }
-
   >.editDelete{
     position: absolute;
     bottom: 6px;
@@ -89,15 +80,12 @@ const StyledOneAswer = styled.div`
       cursor: pointer;
     }
   }
-
   >.vote{
     position: absolute;
     right: 10px;
     top: 60px;
     display: flex;
     flex-direction: column;
-
-
     >button{
       background-color: transparent;
       border: none;
@@ -109,11 +97,9 @@ const StyledOneAswer = styled.div`
         line-height:1.5;
       }
     }
-
     .greenhand{
       color: #0b550b;
     }
-
     .redhand{
       color: #940000;
     }
@@ -125,7 +111,6 @@ const Answer = ({ data, answerAutors }) => {
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const { deleteAnswer, editAnswer } = useContext(QuestionContext);
-
 
   const formik = useFormik({
     initialValues: {
@@ -163,7 +148,6 @@ const Answer = ({ data, answerAutors }) => {
       data.likes.splice(data.likes.indexOf(loggedInUser.id), 1);
     }
     editAnswer(data);
-
   };
 
   const handleDislikeClick = () => {
@@ -199,16 +183,16 @@ const Answer = ({ data, answerAutors }) => {
         <button onClick={handleLikeClick} className={data.likes && data.likes.find(like => like === loggedInUser.id) && "greenhand"}><i className="bi bi-hand-thumbs-up-fill"></i> </button>
         <button onClick={handleDislikeClick} className={data.dislikes && data.dislikes.find(dislike => dislike === loggedInUser.id) && "redhand"}><i className="bi bi-hand-thumbs-down-fill"></i> </button>
       </div>}
-      <ModalDialog isOpen={show}>
+      <ModalDialogDelete isOpen={show}>
         Are you sure you want delete this?
         <br />
         <button onClick={() => { deleteAnswer(data.id); setShow(false) }}>Yes</button>
         <button onClick={() => {
           setShow(false);
         }}>No</button>
-      </ModalDialog>
+      </ModalDialogDelete>
 
-      <ModalDialog2 isOpen={show2}>
+      <ModalDialogEdit isOpen={show2}>
         <form onSubmit={formik.handleSubmit}>
           <div>
             <textarea
@@ -224,11 +208,10 @@ const Answer = ({ data, answerAutors }) => {
           </div>
           <input type="submit" value="Save" />
         </form>
-        <br />
         <button onClick={() => {
           setShow2(false);
         }}>Close</button>
-      </ModalDialog2>
+      </ModalDialogEdit>
     </StyledOneAswer>
   );
 }

@@ -11,7 +11,6 @@ const StyledSection = styled.section`
   align-items: center;
   padding-top: 70px;
 
-
   > h1{
     font-size: 3rem;
     color: #1E1E1E;
@@ -48,7 +47,7 @@ const StyledSection = styled.section`
           font-size: 20px;
           color: #3c3633d6
         }
-    }
+      }
     }
     +p{
       color: #8f0000;
@@ -84,14 +83,12 @@ const Login = () => {
     },
     onSubmit: (values) => {
       const loggedInUser = users.find(user => user.username === values.username);
-
       if (loggedInUser === undefined) {
         setWrongCredentials(true);
       } else {
         setLoggedInUser(loggedInUser);
         navigate('/');
       }
-
       localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
     },
     validationSchema: Yup.object({

@@ -11,21 +11,18 @@ justify-content: space-between;
 align-items: center;
 height: 133px;
 background-color: #e0ccbe;
-
-
-  display: flex;
-  align-items: center;
+display: flex;
+align-items: center;
   
 
   >a{
     >img {
-  height: 180px;
-}
+      height: 180px;
+    }
   }
 
 
 >.loggedIn {
-
   padding-right: 30px;
   >ul {
   margin: 0;
@@ -34,35 +31,31 @@ background-color: #e0ccbe;
   display: flex;
   gap: 10px;
   
-
-  
     >a{
       color: #eeedeb;
       text-decoration: none;
       font-size: 22px;
       text-align: center;
 
-      >li {
+    >li{
+        width: 130px;
+        height: 40px;
+        border: 1px solid #3c3633;
+        border-radius: 9px;
+        background-color: #3c3633;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 1px 3px 10px 0 #3c3633;
 
-            width: 130px;
-            height: 40px;
-            border: 1px solid #3c3633;
-            border-radius: 9px;
-            background-color: #3c3633;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
+          &:hover{
+            box-shadow: -1px -3px 10px 0 #1e1e1e inset;
+          }
 
-            box-shadow: 1px 3px 10px 0 #3c3633;
-
-                &:hover{
-                  box-shadow: -1px -3px 10px 0 #1e1e1e inset;
-                }
-
+      }
     }
   }
-}
 }
 >.loggedOut{
   padding-right: 30px;
@@ -97,13 +90,10 @@ background-color: #e0ccbe;
 `;
 
 const Header = () => {
-
   const { loggedInUser, setLoggedInUser } = useContext(UsersContext);
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    // Check local storage for logged in user on component mount
     const loggedInUserhere = localStorage.getItem('loggedInUser');
     loggedInUserhere && setLoggedInUser(JSON.parse(loggedInUserhere));
   }, [setLoggedInUser]);
@@ -111,10 +101,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-
-
       <Link to='/'><img src={logo} alt="My page logo" /></Link>
-
       {
         loggedInUser ?
           <div className='loggedOut'>
@@ -122,7 +109,6 @@ const Header = () => {
             <p>
               {loggedInUser.username}
             </p>
-
             <button
               onClick={() => {
                 setLoggedInUser(false);

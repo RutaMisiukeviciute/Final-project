@@ -57,7 +57,6 @@ const StyledSection = styled.section`
         resize: vertical;
         
         &::placeholder{
-          /* padding-top: 70px; */
           font-size: 20px;
           color: #3c3633d6;
         }
@@ -90,18 +89,13 @@ const StyledSection = styled.section`
       &:hover{
         box-shadow: -1px -3px 10px 0 #1E1E1E inset;
       }
-
-     
     }
-  
-    
   }
   >a{
         font-size: 22px;
         margin-top: 10px;
         color: #3C3633;
         
-
         &:hover{
         color: #1e1e1e;
         font-weight: 700;

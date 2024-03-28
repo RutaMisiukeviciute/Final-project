@@ -34,7 +34,6 @@ background-color: #747264;
   }
 }
 
-
 >.logoCopy{
   display: flex;
   flex-direction: column;
@@ -70,7 +69,6 @@ background-color: #747264;
   padding: 0;
   list-style-type: none;
   
-  
   >li{
     margin: 15px;
     >a{
@@ -84,9 +82,7 @@ background-color: #747264;
   }
 }
 }
-
-
-`
+`;
 
 const Footer = () => {
   return (
@@ -116,7 +112,6 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-
     </StyledFooter>
   );
 }

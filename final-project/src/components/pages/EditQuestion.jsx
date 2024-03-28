@@ -32,7 +32,7 @@ const StyledSection = styled.section`
       }
 
       > input{
-      border: none;
+        border: none;
         border-bottom: 1px solid  #1E1E1E;
         height: 30px;
         background-color: #EEEDEB;
@@ -56,7 +56,6 @@ const StyledSection = styled.section`
         resize: vertical;
         
         &::placeholder{
-          /* padding-top: 70px; */
           font-size: 20px;
           color: #3c3633d6;
         }
@@ -74,6 +73,7 @@ const StyledSection = styled.section`
         margin-top: 20px;
       }
     }
+
     >input[type=submit]{
       margin-top: 20px;
       background-color: #3C3633;
@@ -89,11 +89,7 @@ const StyledSection = styled.section`
       &:hover{
         box-shadow: -1px -3px 10px 0 #1E1E1E inset;
       }
-
-     
-    }
-  
-    
+    } 
   }
   >a{
         font-size: 22px;
@@ -147,7 +143,7 @@ const EditQuestion = () => {
   });
   return (
     <StyledSection>
-      <h1>Ask new question</h1>
+      <h1>Edit question</h1>
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>

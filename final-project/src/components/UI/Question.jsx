@@ -12,14 +12,10 @@ const StyledQuestion = styled.div`
   color: #1e1e1e;
 
   &:hover{
-
     box-shadow: -1px -2px 10px 0 #747264 inset;
-
   }
 
-
   >a{
-
    text-decoration: none;
    color: #1E1E1E;
 
@@ -34,16 +30,15 @@ const StyledQuestion = styled.div`
     font-size: 22px;
     margin-left: 10px;
 
-    >.green{
-    color: green;
-  }
-    >.red{
-    color: #940000;
-  }
-    >.zero{
-    color: #1E1E1E;
-  }
-
+      >.green{
+      color: green;
+    }
+      >.red{
+      color: #940000;
+    }
+      >.zero{
+      color: #1E1E1E;
+    }
   }
 
   >p:first-of-type{
@@ -53,6 +48,7 @@ const StyledQuestion = styled.div`
     right: 10px;
     margin: 0;
   }
+
   >p:last-of-type{
     font-size: 20px;
     position: absolute;
@@ -60,14 +56,10 @@ const StyledQuestion = styled.div`
     right: 10px;
     margin: 0;
   }
-
-  }
-  
+}
 `;
 
 const Question = ({ data, countNum, questionAuthors }) => {
-
-
   return (
     <StyledQuestion>
       <Link to={`/${data.id}`}>
@@ -81,7 +73,6 @@ const Question = ({ data, countNum, questionAuthors }) => {
         {data.edited && <p>Edited</p>}
         <p>Asked by {questionAuthors} at {data.date.substring(0, 10)}</p>
       </Link>
-
     </StyledQuestion>
   );
 }

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import { useState, useContext } from 'react';
 import { Link, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../UI/DropdownMenu";
 
 const StyledSection = styled.section`
@@ -29,16 +28,14 @@ const StyledSection = styled.section`
     align-self: flex-end;
     cursor: pointer;
     
-    
-
     &:hover{
       box-shadow: -1px -3px 10px 0 #1e1e1e inset;
     }
   }
   
- >div {
-  width:95%;
- }
+    >div {
+       width:95%;
+   }
 
 >.SortAndFilter{
   display: flex;
@@ -50,8 +47,7 @@ const StyledSection = styled.section`
   align-items: baseline;
   justify-content: end;
   gap: 10px;
-  
- }
+  }
 
  >.sort{
   display: flex;
@@ -80,7 +76,6 @@ const MainQuestions = () => {
 
   const { loggedInUser } = useContext(UsersContext);
   const { questions, answersCount, questionAuthors } = useContext(QuestionContext);
-  const navigate = useNavigate();
   const location = useLocation();
 
   const [selectedFilter, setSelectedFilter] = useState('all');
@@ -140,7 +135,6 @@ const MainQuestions = () => {
   return (
     <StyledSection>
       <div className="SortAndFilter">
-
         <div className="sort">
           <h3>Sort:</h3>
           <button onClick={handleSortDateClick}>
@@ -158,8 +152,6 @@ const MainQuestions = () => {
           <h3>Filter:</h3>
           <DropdownMenu options={options} onChange={handleFilterChange} />
         </div>
-
-
       </div>
       {loggedInUser &&
         <Link to="/askNew" className="a">Ask new question</Link>

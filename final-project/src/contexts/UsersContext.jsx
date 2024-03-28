@@ -8,9 +8,6 @@ const UsersProvider = ({ children }) => {
   const login = user => {
     setLoggedInUser(user);
   };
-  const logout = () => {
-    setLoggedInUser(false);
-  };
 
   const [users, setUsers] = useState([]);
   const addNewUser = newUser => {
@@ -36,9 +33,7 @@ const UsersProvider = ({ children }) => {
         users,
         addNewUser,
         loggedInUser,
-        setLoggedInUser,
-        login,
-        logout
+        setLoggedInUser
       }}
     >
       {children}
