@@ -1,9 +1,14 @@
 # How to launch this project
-You gonna need 2 terminal with bash script.
+
+Go to this project file
+cd ./final-project
+
+
+You gonna need terminal with bash script.
 
 In first terminal:
 npm run json
 
-In second terminal write in this order
+Open new bash script and write in this order
 npm i
 npm start
