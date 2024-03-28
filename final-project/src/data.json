@@ -1,0 +1,266 @@
+{
+  "users": [
+    {
+      "id": "0",
+      "username": "firstUser",
+      "email": "first@user.com",
+      "password": "IamfirstUser123@",
+      "photoURL": "https://cdn-icons-png.flaticon.com/512/219/219969.png"
+    },
+    {
+      "id": "1",
+      "username": "secondUser",
+      "email": "second@user.com",
+      "password": "IamsecondUser123@",
+      "photoURL": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
+    },
+    {
+      "id": "2e92",
+      "username": "asdf",
+      "email": "bla@bla.com",
+      "password": "Bla@5bla",
+      "passwordRepeat": "Bla@5bla",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
+    }
+  ],
+  "questions": [
+    {
+      "id": "0",
+      "userId": "0",
+      "title": "My first question",
+      "question": "I have a question, where can I put my question?",
+      "edited": true,
+      "date": "2024-03-27T14:30:00Z",
+      "likes": [
+        "1",
+        "2e92"
+      ],
+      "dislikes": [
+        "0"
+      ]
+    },
+    {
+      "id": "10",
+      "userId": "0",
+      "title": "My first question new",
+      "question": "I have a question, where can I put my question?",
+      "edited": true,
+      "date": "2024-03-27T14:33:00Z",
+      "likes": [],
+      "dislikes": [
+        "2e92",
+        "1",
+        "0"
+      ]
+    },
+    {
+      "edited": true,
+      "id": "1",
+      "userId": "0",
+      "title": "My second question tatataratatatata",
+      "question": "I have a question, where can I put my other question?",
+      "date": "2024-03-27T15:50:00Z",
+      "likes": [
+        "2e92"
+      ],
+      "dislikes": []
+    },
+    {
+      "edited": true,
+      "id": "adac58dc-252c-436d-ac97-3e49373a44b2",
+      "userId": "1",
+      "title": "testukas",
+      "question": "neeeeeeeeeeeeeeeeeeeee",
+      "date": "2024-03-26T15:50:00Z",
+      "likes": [
+        "0"
+      ],
+      "dislikes": []
+    },
+    {
+      "id": "b73105db-83bc-47f6-8be5-a39167a827bc",
+      "userId": "2e92",
+      "edited": false,
+      "title": "ajdhjfhasfkjl",
+      "question": "afsfsadfasf",
+      "date": "2024-03-21T18:50:00Z",
+      "likes": [],
+      "dislikes": [
+        "0"
+      ]
+    },
+    {
+      "id": "0a467ad7-3d22-4766-8033-42461eb7efe2",
+      "userId": "0",
+      "edited": false,
+      "date": "2024-03-26T13:58:54.286Z",
+      "title": "my new question",
+      "question": "Just trying some time things",
+      "likes": [
+        "0"
+      ],
+      "dislikes": []
+    },
+    {
+      "id": "3fff2b53-da06-4b74-a2d7-fca383bf0588",
+      "userId": "0",
+      "edited": false,
+      "date": "2024-03-27T11:56:50.316Z",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [
+        "1"
+      ],
+      "title": "naujas tests",
+      "question": "tatatatatattaatatata"
+    }
+  ],
+  "answers": [
+    {
+      "id": "0",
+      "questionId": "0",
+      "userId": "1",
+      "answer": "right here",
+      "likes": [],
+      "dislikes": [
+        "1",
+        "0"
+      ],
+      "edited": false
+    },
+    {
+      "edited": true,
+      "answer": "thanks I found it myself",
+      "id": "1",
+      "questionId": "0",
+      "userId": "0",
+      "likes": [
+        "0"
+      ],
+      "dislikes": []
+    },
+    {
+      "id": "10",
+      "questionId": "10",
+      "userId": "1",
+      "answer": "right here",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "edited": false
+    },
+    {
+      "id": "11",
+      "questionId": "10",
+      "userId": "0",
+      "answer": "thank I found it myself",
+      "likes": [],
+      "dislikes": [
+        "0"
+      ],
+      "edited": true
+    },
+    {
+      "id": "4",
+      "questionId": "1",
+      "userId": "0",
+      "answer": "thank I found it myself",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "edited": true
+    },
+    {
+      "id": "7",
+      "questionId": "1",
+      "userId": "0",
+      "answer": "thank I found it myself",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "edited": true
+    },
+    {
+      "id": "5",
+      "questionId": "b73105db-83bc-47f6-8be5-a39167a827bc",
+      "userId": "1",
+      "answer": "bla bla bla",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "edited": false
+    },
+    {
+      "id": "6",
+      "questionId": "b73105db-83bc-47f6-8be5-a39167a827bc",
+      "userId": "1",
+      "answer": "bla bla bla2",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "edited": false
+    },
+    {
+      "id": "3e55f20c-f4b2-45be-a492-3a4f7e7bc90a",
+      "questionId": "1",
+      "userId": "0",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "edited": false,
+      "answer": "heresssssss"
+    },
+    {
+      "id": "fbe7f777-5df0-4241-861d-eb4f31d379d0",
+      "questionId": "1",
+      "userId": "0",
+      "rating": 5,
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "answer": "blabla"
+    },
+    {
+      "id": "711a2688-40c6-45e8-964b-7dfabb78963b",
+      "questionId": "b73105db-83bc-47f6-8be5-a39167a827bc",
+      "userId": "0",
+      "likes": [
+        "0"
+      ],
+      "dislikes": [],
+      "edited": false,
+      "answer": "yupfgd"
+    },
+    {
+      "edited": true,
+      "answer": "new comment222",
+      "id": "72b89101-cef5-412c-8aa6-5b9fd57dfaa8",
+      "questionId": "b73105db-83bc-47f6-8be5-a39167a827bc",
+      "userId": "2e92",
+      "likes": [
+        "0"
+      ],
+      "dislikes": []
+    },
+    {
+      "id": "0adee87b-e0b9-43f5-9e53-8b06d24773f4",
+      "questionId": "0",
+      "userId": "1",
+      "likes": [
+        "1",
+        "0"
+      ],
+      "dislikes": [],
+      "edited": false,
+      "answer": "new answer with likes and dislikes"
+    }
+  ]
+}
