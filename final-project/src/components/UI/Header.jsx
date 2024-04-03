@@ -94,7 +94,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loggedInUserhere = localStorage.getItem('loggedInUser');
+    const loggedInUserhere = localStorage.getItem(loggedInUser);
     loggedInUserhere && setLoggedInUser(JSON.parse(loggedInUserhere));
   }, [setLoggedInUser]);
 

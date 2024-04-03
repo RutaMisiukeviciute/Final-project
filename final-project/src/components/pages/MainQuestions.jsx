@@ -47,6 +47,7 @@ const StyledSection = styled.section`
   align-items: baseline;
   justify-content: end;
   gap: 10px;
+  z-index: 5;
   }
 
  >.sort{

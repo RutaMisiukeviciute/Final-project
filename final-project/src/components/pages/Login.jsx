@@ -4,6 +4,8 @@ import { useFormik } from 'formik';
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import bcrypt from 'bcryptjs';
+
 
 const StyledSection = styled.section`
   display: flex;
@@ -82,7 +84,7 @@ const Login = () => {
       password: ""
     },
     onSubmit: (values) => {
-      const loggedInUser = users.find(user => user.username === values.username);
+      const loggedInUser = users.find(user => user.username === values.username && user.passwordNoHash === values.password);
       if (loggedInUser === undefined) {
         setWrongCredentials(true);
       } else {
