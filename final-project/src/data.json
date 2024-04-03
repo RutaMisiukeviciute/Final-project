@@ -4,23 +4,76 @@
       "id": "0",
       "username": "firstUser",
       "email": "first@user.com",
-      "password": "IamfirstUser123@",
+      "passwordNoHash": "IamfirstUser123@",
+      "password": "",
       "photoURL": "https://cdn-icons-png.flaticon.com/512/219/219969.png"
     },
     {
       "id": "1",
       "username": "secondUser",
       "email": "second@user.com",
-      "password": "IamsecondUser123@",
+      "passwordNoHash": "IamsecondUser123@",
+      "password": "",
       "photoURL": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1710892800&semt=ais"
     },
     {
       "id": "2e92",
       "username": "asdf",
       "email": "bla@bla.com",
+      "passwordNoHash": "Bla@5bla",
       "password": "Bla@5bla",
-      "passwordRepeat": "Bla@5bla",
       "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
+    },
+    {
+      "id": "d9c2",
+      "username": "aaaaaaaaaa",
+      "email": "a@a",
+      "passwordNoHash": "Bla5bla5@",
+      "password": "Bla5bla5@",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
+    },
+    {
+      "id": "e515",
+      "username": "naujas",
+      "email": "a@a",
+      "passwordNoHash": "",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png",
+      "password": "$2a$08$WdFPwu4Eg4TCU6ss8VR1bOC0AdwTaDaB2atH6bcYK7cpbR6ho8PAG",
+      "passwordRepeat": "NEesigauna@5"
+    },
+    {
+      "id": "0921",
+      "username": "aaaaaaaaaaaaaa",
+      "email": "a@a",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png",
+      "password": "$2a$08$qasvL/1k./Ctfx2/WQswfe6Wc/dq8W8q2/UaRZGo/1DpSllLRa44a",
+      "passwordRepeat": "NEesigauna5@",
+      "passwordNoHash": "NEesigauna5@"
+    },
+    {
+      "id": "8209",
+      "username": "adaswss",
+      "email": "adss@aaaa",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png",
+      "password": "$2a$08$G.1ld3vMVZdtkz/4E1CU3ubNv0jNqp69ZJ4ghfcEA.WWoSV1TgCJe",
+      "passwordRepeat": "NEesigauna5@",
+      "passwordNoHash": "NEesigauna5@"
+    },
+    {
+      "id": "03b7",
+      "username": "naujasVartotojas",
+      "email": "naujas@new",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png",
+      "password": "$2a$08$vp9Zt5QIcxe6KysVG/J08uw0gzRLITklyvB5yqVywuE9/iDexNDWq",
+      "passwordNoHash": "newUser5@"
+    },
+    {
+      "id": "61c6",
+      "username": "firstUser3",
+      "email": "a@a",
+      "photoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png",
+      "password": "$2a$08$wYJpAyzprjt5E2vCvEgYN.Bac6it5ww4O55QHiRDT02y/Jvg4veN.",
+      "passwordNoHash": "newUser5@"
     }
   ],
   "questions": [

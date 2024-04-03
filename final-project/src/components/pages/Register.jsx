@@ -2,8 +2,9 @@ import { useFormik } from 'formik';
 import styled from 'styled-components';
 import * as Yup from 'yup';
 import UsersContext from '../../contexts/UsersContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import bcrypt from 'bcryptjs';
 
 const StyledSection = styled.section`
   display: flex;
@@ -75,27 +76,35 @@ const StyledSection = styled.section`
 
 const Register = () => {
 
-  const { addNewUser, setLoggedInUser } = useContext(UsersContext);
+  const { addNewUser, setLoggedInUser, loggedInUser, users } = useContext(UsersContext);
   const navigate = useNavigate();
+  const [sameNameError, setSameNameError] = useState(false);
 
   const formik = useFormik({
     initialValues: {
       username: "",
       email: "",
-      password: "",
-      passwordRepeat: "",
-      photoURL: ""
+      photoURL: "",
+      password: ""
     },
     onSubmit: values => {
-      const newUser = {
-        ...values,
-        photoURL: values.photoURL ? values.photoURL : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png',
+      if (users.find(user => user.username === values.username)) {
+        setSameNameError(true);
+      } else {
+        const newUser = {
+          ...values,
+          photoURL: values.photoURL ? values.photoURL : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png',
+          password: bcrypt.hashSync(values.password, 8),
+          passwordNoHash: values.password,
 
+        }
+        delete newUser.passwordRepeat;
+        addNewUser(newUser);
+        formik.resetForm();
+        setLoggedInUser(newUser);
+        navigate('/');
+        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
       }
-      addNewUser(newUser);
-      formik.resetForm();
-      setLoggedInUser(newUser);
-      navigate('/');
     },
     validationSchema: Yup.object({
       username: Yup.string()
@@ -193,17 +202,20 @@ const Register = () => {
             type="password"
             name="passwordRepeat" id="passwordRepeat"
             placeholder="Repeat your password..."
-            value={formik.values.passwordRepeat}
+            value={formik.values.passwordNoHash}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           {
-            formik.touched.passwordRepeat && formik.errors.passwordRepeat &&
-            <span>{formik.errors.passwordRepeat}</span>
+            formik.touched.passwordNoHash && formik.errors.passwordNoHash &&
+            <span>{formik.errors.passwordNoHash}</span>
           }
         </div>
         <input type="submit" value="Register" />
       </form>
+      {
+        sameNameError && <p>Username is invalid</p>
+      }
     </StyledSection>
   );
 }

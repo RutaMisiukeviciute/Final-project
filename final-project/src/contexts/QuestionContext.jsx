@@ -109,10 +109,10 @@ const QuestionProvider = ({ children }) => {
       questions.forEach(el => {
         const questionId = el.id;
 
-        const questionAnswers = answers.filter(el1 => el1.questionId === questionId);
+        const questionAnswers = answers?.filter(el1 => el1.questionId === questionId);
         counts[questionId] = questionAnswers.length;
 
-        names[questionId] = users && users.find(user => user.id === el.userId).username;
+        names[questionId] = users?.find(user => user.id === el.userId).username;
         qAnswers[questionId] = questionAnswers;
       });
       setAnswersCount(counts)
@@ -126,7 +126,7 @@ const QuestionProvider = ({ children }) => {
     const getAnswersInfo = () => {
       const names = {};
       answers.forEach(answer => {
-        names[answer.id] = users.find(user => user.id === answer.userId).username;
+        names[answer.id] = users?.find(user => user.id === answer.userId).username;
       });
       setAnswerAuthors(names);
     }
